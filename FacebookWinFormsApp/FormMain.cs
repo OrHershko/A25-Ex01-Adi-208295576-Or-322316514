@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
@@ -19,9 +14,34 @@ namespace BasicFacebookFeatures
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
+            hideComponents();
         }
 
         FacebookWrapper.LoginResult m_LoginResult;
+
+        private void hideComponents()
+        {
+            friendsListBox.Hide();
+            friendsLabel.Hide();
+            albumsListBox.Hide();
+            albumsLabel.Hide();
+            likedPagesListBox.Hide();
+            likedPagesLabel.Hide();
+            flowLayoutPanelFeed.Hide();
+            usernameLabel.Hide();
+        }
+
+        private void showComponents()
+        {
+            friendsListBox.Show();
+            friendsLabel.Show();
+            albumsListBox.Show();
+            albumsLabel.Show();
+            likedPagesListBox.Show();
+            likedPagesLabel.Show();
+            flowLayoutPanelFeed.Show();
+            usernameLabel.Show();
+        }
 
         private async void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -41,21 +61,32 @@ namespace BasicFacebookFeatures
                 //    "913632580724598",
                 //    "email",
                 //    "public_profile",
-                //    "user_posts"
+                //    "user_friends",
+                //    "user_likes",
+                //    "user_posts",
+                //    "user_photos"
                 //);
 
-                m_LoginResult = FacebookService.Connect(
-                    "EAAMZB8alt53YBOxPQwM5JPl2ZBj0RBxt0sDZBB1nOFW5jTMubkghMgEownISqcMZAZAyCJCs7wBAKJMWEKbS7o8r0NrTAkLvB2k1InMdLWRyPQlqTciR7AhDTNbKh0NcyrzzOc5nLFNnSEfNawvqK8L2pnXUZAjJ5LcIqJhKPdqkLHXb6dwXPXmkFwlbF8BTUZCRnhYkypyjLATOjk1BTjPGhYTQEcg");
+                string id = "EAAMZB8alt53YBO9kPj5chSF7ufZBjuhmmGBwy1WNnZCz4HGYnEuU4lf4fK4mVeZBkJBRayJO96H6pVMZBN5u8VIFx5xlxHqv2X7rKRGqvYRJkc24ZC3t46bfhMmSHXRDZASZAOCR5wgbus5yRLhZB3IAPhnJQU6loyCDMucxGZBXa6e67u6DiStZCL5OyV47aGOdx1PKs5Evyg5iMoVeVXKpll5lKwEYP9eQ7JzkAeZBDQZDZD";
+
+                m_LoginResult = FacebookService.Connect(id);
 
                 if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
                 {
                     buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
+                    usernameLabel.Text = m_LoginResult.LoggedInUser.Name;
                     buttonLogin.BackColor = Color.LightGreen;
                     pictureBoxProfile.ImageLocation = m_LoginResult.LoggedInUser.PictureNormalURL;
                     buttonLogin.Enabled = false;
                     buttonLogout.Enabled = true;
+                    friendsListBox.DrawItem += ListBox_DrawItem;
+                    albumsListBox.DrawItem += ListBox_DrawItem;
+                    likedPagesListBox.DrawItem += ListBox_DrawItem;
+                    showComponents();
                     await loadNewsFeedAsync();
                     await loadFriendsAsync();
+                    await loadAlbumsAsync();
+                    await loadPagesAsync();
                 }
                 else
                 {
@@ -72,8 +103,10 @@ namespace BasicFacebookFeatures
         private void buttonLogout_Click(object sender, EventArgs e)
         {
             FacebookService.LogoutWithUI();
+            hideComponents();
             buttonLogin.Text = "Login";
             buttonLogin.BackColor = buttonLogout.BackColor;
+            pictureBoxProfile.ImageLocation = null;
             m_LoginResult = null;
             buttonLogin.Enabled = true;
             buttonLogout.Enabled = false;
@@ -81,18 +114,52 @@ namespace BasicFacebookFeatures
 
         private async Task loadFriendsAsync()
         {
+            await PopulateListBoxAsync(
+                friendsListBox,
+                m_LoginResult.LoggedInUser.Friends,
+                (listBox, friend) =>
+                    {
+                        listBox.Items.Add(new ListBoxItem(friend.Name, friend.PictureSmallURL));
+                    });
+        }
+
+        private async Task loadAlbumsAsync()
+        {
+            await PopulateListBoxAsync(
+                albumsListBox,
+                m_LoginResult.LoggedInUser.Albums,
+                (listBox, album) =>
+                    {
+                        listBox.Items.Add(new ListBoxItem(album.Name, album.PictureSmallURL));
+                    });
+        }
+
+        private async Task loadPagesAsync()
+        {
+            await PopulateListBoxAsync(
+                likedPagesListBox,
+                m_LoginResult.LoggedInUser.LikedPages,
+                (listBox, page) =>
+                    {
+                        listBox.Items.Add(new ListBoxItem(page.Name, page.PictureSmallURL));
+                    });
+        }
+
+
+        private async Task PopulateListBoxAsync<T>(ListBox listBox, IEnumerable<T> items, Action<ListBox, T> addAction)
+        {
             await Task.Run(() =>
                 {
-                    foreach (var friend in m_LoginResult.LoggedInUser.Friends)
+                    foreach (var item in items)
                     {
-                        
-                        friendsListBox.Invoke((Action)(() =>
-                                                              {
-                                                                  friendsListBox.Items.Add(new FriendItem(friend.Name, friend.PictureSmallURL));
-                                                              }));
+                        listBox.Invoke((Action)(() =>
+                                                       {
+                                                           addAction(listBox, item); // מבצע את הפעולה על כל פריט
+                                                       }));
                     }
                 });
         }
+
 
 
         private async Task loadNewsFeedAsync()
@@ -126,13 +193,13 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void ListBoxFriends_DrawItem(object sender, DrawItemEventArgs e)
+        private void ListBox_DrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground(); // צייר את הרקע
             if (e.Index < 0) return;
 
             // שלוף את הפריט
-            FriendItem friendItem = (FriendItem)((ListBox)sender).Items[e.Index];
+            ListBoxItem listBoxItem = (ListBoxItem)((ListBox)sender).Items[e.Index];
 
             // צור PictureBox דינמי להצגת התמונה
             PictureBox pictureBox = new PictureBox
@@ -141,7 +208,7 @@ namespace BasicFacebookFeatures
                                             Width = 40,
                                             Height = 40,
                                             Location = new Point(e.Bounds.X, e.Bounds.Y), // מיקום בתוך השורה
-                                            ImageLocation = friendItem.PictureURL // קישור לתמונה
+                                            ImageLocation = listBoxItem.PictureURL // קישור לתמונה
                                         };
 
             // הוסף את ה-PictureBox ל-ListBox באופן זמני לציור
@@ -150,12 +217,30 @@ namespace BasicFacebookFeatures
             // צייר את שם החבר
             using (Font font = new Font("Arial", 10, FontStyle.Regular))
             {
-                e.Graphics.DrawString(friendItem.Name, font, Brushes.Black, e.Bounds.X + 50, e.Bounds.Y + 10);
+                e.Graphics.DrawString(listBoxItem.Name, font, Brushes.Black, e.Bounds.X + 50, e.Bounds.Y + 10);
             }
 
             e.DrawFocusRectangle(); // צייר מסגרת כאשר הפריט בפוקוס
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void friendsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

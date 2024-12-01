@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures
 {
-    public class FriendItem
+    public class ListBoxItem
     {
         public string Name { get; set; } 
         public string PictureURL { get; set; }
 
-        public FriendItem(string name, string pictureURL)
+        public ListBoxItem(string name, string pictureURL)
         {
             Name = name;
             PictureURL = pictureURL;
