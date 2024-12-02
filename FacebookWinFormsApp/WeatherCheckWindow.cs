@@ -31,13 +31,13 @@ namespace BasicFacebookFeatures
             //    }
             //}
 
-            FacebookEvent FacebookEventWrapper = new FacebookEvent("Test", new DateTime(2024, 12, 3), "תל אביב");
+            FacebookEventWrapper FacebookEventWrapper = new FacebookEventWrapper("Test", new DateTime(2024, 12, 3), "תל אביב");
             eventsListBox.Items.Add(FacebookEventWrapper);
         }
 
         private void eventsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (eventsListBox.SelectedItem is FacebookEvent selectedEvent)
+            if (eventsListBox.SelectedItem is FacebookEventWrapper selectedEvent)
             {
                 if (!string.IsNullOrEmpty(selectedEvent.Location) && selectedEvent.Date.HasValue)
                 {

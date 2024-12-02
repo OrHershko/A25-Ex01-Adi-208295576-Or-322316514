@@ -79,7 +79,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FacebookEvent.cs" />
+    <Compile Include="FacebookEventWrapper.cs" />
     <Compile Include="FeedItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -55,13 +55,6 @@ namespace BasicFacebookFeatures
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 27);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1235, 666);
-            this.tabPage2.TabIndex = 1;
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.sortPagesButton);
@@ -273,7 +266,7 @@ namespace BasicFacebookFeatures
             this.sortPagesButton.TabIndex = 67;
             this.sortPagesButton.Text = "Sort Liked Pages By Popularity";
             this.sortPagesButton.UseVisualStyleBackColor = true;
-            this.sortPagesButton.Click += new System.EventHandler(this.button1_Click);
+            this.sortPagesButton.Click += new System.EventHandler(this.sortedPagesButton_Click);
             // 
             // FormMain
             // 

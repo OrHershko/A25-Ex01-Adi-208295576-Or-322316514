@@ -51,7 +51,6 @@
             this.webBrowser.ScrollBarsEnabled = false;
             this.webBrowser.Size = new System.Drawing.Size(383, 250);
             this.webBrowser.TabIndex = 1;
-            this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser2_DocumentCompleted);
             // 
             // descriptionLabel
             // 
@@ -67,7 +66,6 @@
             this.descriptionLabel.TabIndex = 2;
             this.descriptionLabel.Text = "Description";
             this.descriptionLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.descriptionLabel.Click += new System.EventHandler(this.descriptionLabel_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -91,7 +89,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(429, 554);
             this.tableLayoutPanel1.TabIndex = 5;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // linkLabel
             // 

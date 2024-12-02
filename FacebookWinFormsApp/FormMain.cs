@@ -31,6 +31,10 @@ namespace BasicFacebookFeatures
             likedPagesLabel.Hide();
             flowLayoutPanelFeed.Hide();
             usernameLabel.Hide();
+            sortPagesButton.Hide();
+            checkWeatherButton.Hide();
+            postTextBox.Hide();
+            postStatusButton.Hide();
         }
 
         private void showComponents()
@@ -43,6 +47,10 @@ namespace BasicFacebookFeatures
             likedPagesLabel.Show();
             flowLayoutPanelFeed.Show();
             usernameLabel.Show();
+            sortPagesButton.Show();
+            checkWeatherButton.Show();
+            postTextBox.Show();
+            postStatusButton.Show();
         }
 
         private async void buttonLogin_Click(object sender, EventArgs e)
@@ -114,7 +122,7 @@ namespace BasicFacebookFeatures
 
         private async Task loadFriendsAsync()
         {
-            await PopulateListBoxAsync(
+            await populateListBoxAsync(
                 friendsListBox,
                 m_LoginResult.LoggedInUser.Friends,
                 (listBox, friend) =>
@@ -125,7 +133,7 @@ namespace BasicFacebookFeatures
 
         private async Task loadAlbumsAsync()
         {
-            await PopulateListBoxAsync(
+            await populateListBoxAsync(
                 albumsListBox,
                 m_LoginResult.LoggedInUser.Albums,
                 (listBox, album) =>
@@ -136,7 +144,7 @@ namespace BasicFacebookFeatures
 
         private async Task loadPagesAsync()
         {
-            await PopulateListBoxAsync(
+            await populateListBoxAsync(
                 likedPagesListBox,
                 m_LoginResult.LoggedInUser.LikedPages,
                 (listBox, page) =>
@@ -146,7 +154,7 @@ namespace BasicFacebookFeatures
         }
 
 
-        private async Task PopulateListBoxAsync<T>(ListBox listBox, IEnumerable<T> items, Action<ListBox, T> addAction)
+        private async Task populateListBoxAsync<T>(ListBox listBox, IEnumerable<T> items, Action<ListBox, T> addAction)
         {
             await Task.Run(() =>
                 {
@@ -234,7 +242,7 @@ namespace BasicFacebookFeatures
             weatherCheck.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void sortedPagesButton_Click(object sender, EventArgs e)
         {
             var sortedLikedPages = m_LoginResult.LoggedInUser.LikedPages.OrderBy(page => page.LikesCount).ToList();
             SortedPages sortedPagesWindow = new SortedPages();
