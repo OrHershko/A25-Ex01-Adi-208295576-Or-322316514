@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BasicFacebookFeatures
+﻿namespace BasicFacebookFeatures
 {
     public class ListBoxItem
     {
-        public string Name { get; set; } 
+        public string Name { get; set; }
         public string PictureURL { get; set; }
 
         public ListBoxItem(string name, string pictureURL)
@@ -19,7 +13,7 @@ namespace BasicFacebookFeatures
 
         public override string ToString()
         {
-            return Name; 
+            return Name;
         }
     }
 }

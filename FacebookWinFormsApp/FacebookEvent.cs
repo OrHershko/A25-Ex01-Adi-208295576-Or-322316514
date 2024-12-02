@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasicFacebookFeatures
 {
@@ -10,7 +6,7 @@ namespace BasicFacebookFeatures
     {
         public string Name { get; set; }
         public DateTime? Date { get; set; }
-        
+
         public String Location { get; set; }
 
         public FacebookEvent(string i_Name, DateTime? i_Date, string i_Location)

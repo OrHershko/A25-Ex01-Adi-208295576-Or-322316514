@@ -49,6 +49,7 @@ namespace BasicFacebookFeatures
             this.buttonLogout = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.sortPagesButton = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -63,6 +64,7 @@ namespace BasicFacebookFeatures
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.sortPagesButton);
             this.tabPage1.Controls.Add(this.checkWeatherButton);
             this.tabPage1.Controls.Add(this.postStatusButton);
             this.tabPage1.Controls.Add(this.postTextBox);
@@ -133,7 +135,6 @@ namespace BasicFacebookFeatures
             this.albumsLabel.Size = new System.Drawing.Size(76, 19);
             this.albumsLabel.TabIndex = 62;
             this.albumsLabel.Text = "Albums";
-            this.albumsLabel.Click += new System.EventHandler(this.label2_Click_1);
             // 
             // likedPagesLabel
             // 
@@ -144,7 +145,6 @@ namespace BasicFacebookFeatures
             this.likedPagesLabel.Size = new System.Drawing.Size(118, 19);
             this.likedPagesLabel.TabIndex = 61;
             this.likedPagesLabel.Text = "Liked Pages";
-            this.likedPagesLabel.Click += new System.EventHandler(this.label2_Click);
             // 
             // friendsLabel
             // 
@@ -191,7 +191,6 @@ namespace BasicFacebookFeatures
             this.friendsListBox.Name = "friendsListBox";
             this.friendsListBox.Size = new System.Drawing.Size(267, 200);
             this.friendsListBox.TabIndex = 57;
-            this.friendsListBox.SelectedIndexChanged += new System.EventHandler(this.friendsListBox_SelectedIndexChanged);
             // 
             // flowLayoutPanelFeed
             // 
@@ -265,6 +264,17 @@ namespace BasicFacebookFeatures
             this.tabControl1.Size = new System.Drawing.Size(1243, 697);
             this.tabControl1.TabIndex = 54;
             // 
+            // sortPagesButton
+            // 
+            this.sortPagesButton.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sortPagesButton.Location = new System.Drawing.Point(15, 198);
+            this.sortPagesButton.Name = "sortPagesButton";
+            this.sortPagesButton.Size = new System.Drawing.Size(270, 71);
+            this.sortPagesButton.TabIndex = 67;
+            this.sortPagesButton.Text = "Sort Liked Pages By Popularity";
+            this.sortPagesButton.UseVisualStyleBackColor = true;
+            this.sortPagesButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -276,7 +286,6 @@ namespace BasicFacebookFeatures
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facebook Winforms App";
-            this.Load += new System.EventHandler(this.FormMain_Load);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
@@ -306,6 +315,7 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Button postStatusButton;
         private System.Windows.Forms.TextBox postTextBox;
         private System.Windows.Forms.Button checkWeatherButton;
+        private System.Windows.Forms.Button sortPagesButton;
     }
 }
 

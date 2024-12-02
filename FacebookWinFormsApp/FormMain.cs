@@ -1,13 +1,12 @@
-﻿using System;
+﻿using FacebookWrapper;
+using FacebookWrapper.ObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
-using FacebookWrapper.ObjectModel;
-using FacebookWrapper;
-using Facebook;
 using System.Threading.Tasks;
-using System.Windows.Forms.VisualStyles;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Forms;
+using System.Linq;
+
 
 namespace BasicFacebookFeatures
 {
@@ -20,7 +19,7 @@ namespace BasicFacebookFeatures
             hideComponents();
         }
 
-        FacebookWrapper.LoginResult m_LoginResult;
+        private FacebookWrapper.LoginResult m_LoginResult;
 
         private void hideComponents()
         {
@@ -71,7 +70,6 @@ namespace BasicFacebookFeatures
                 //);
 
                 string id = "EAAMZB8alt53YBO3BZBZCrOQaqgPyXOVEnlze7lsAbWXrQqMI2CfvlZBS1QOLeHxkWPYEAKzdlOVK0Sa52WrgiFZC2nb0RR0trZCQP1SUYY7xMQV6rUpyl90eZCCcnYq3QdiD7VUb382VihCK77EtY3kCCMneVQ9TVZAQr8jcu5wk9rdYrEaiSC2SrEP27daGItxunREwJO7OdMACuclKvZC2bbsd6F82DCkUZADi00bgZDZD";
-
                 m_LoginResult = FacebookService.Connect(id);
 
                 if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
@@ -86,10 +84,10 @@ namespace BasicFacebookFeatures
                     albumsListBox.DrawItem += ListBox_DrawItem;
                     likedPagesListBox.DrawItem += ListBox_DrawItem;
                     showComponents();
-                    //await loadNewsFeedAsync();
-                    //await loadFriendsAsync();
-                    //await loadAlbumsAsync();
-                    //await loadPagesAsync();
+                    await loadNewsFeedAsync();
+                    await loadFriendsAsync();
+                    await loadAlbumsAsync();
+                    await loadPagesAsync();
                 }
                 else
                 {
@@ -100,7 +98,6 @@ namespace BasicFacebookFeatures
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
-
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -163,8 +160,6 @@ namespace BasicFacebookFeatures
                 });
         }
 
-
-
         private async Task loadNewsFeedAsync()
         {
             try
@@ -177,7 +172,6 @@ namespace BasicFacebookFeatures
 
                 IEnumerable<Post> posts = m_LoginResult.LoggedInUser.Posts;
                 flowLayoutPanelFeed.Controls.Clear();
-
                 foreach (var post in posts)
                 {
                     if (!string.IsNullOrEmpty(post.Description))
@@ -185,7 +179,6 @@ namespace BasicFacebookFeatures
                         FeedItemControl feedItemControl = new FeedItemControl();
 
                         feedItemControl.SetPostData(post);
-                        
                         flowLayoutPanelFeed.Controls.Add(feedItemControl);
                     }
                 }
@@ -196,55 +189,30 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void ListBox_DrawItem(object sender, DrawItemEventArgs e)
+        public static void ListBox_DrawItem(object sender, DrawItemEventArgs e)
         {
-            e.DrawBackground(); // צייר את הרקע
+            e.DrawBackground(); 
             if (e.Index < 0) return;
 
-            // שלוף את הפריט
             ListBoxItem listBoxItem = (ListBoxItem)((ListBox)sender).Items[e.Index];
-
-            // צור PictureBox דינמי להצגת התמונה
             PictureBox pictureBox = new PictureBox
-                                        {
-                                            SizeMode = PictureBoxSizeMode.StretchImage,
-                                            Width = 40,
-                                            Height = 40,
-                                            Location = new Point(e.Bounds.X, e.Bounds.Y), // מיקום בתוך השורה
-                                            ImageLocation = listBoxItem.PictureURL // קישור לתמונה
-                                        };
+            {
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                Width = 40,
+                Height = 40,
+                Location = new Point(e.Bounds.X, e.Bounds.Y), 
+                ImageLocation = listBoxItem.PictureURL 
+            };
 
-            // הוסף את ה-PictureBox ל-ListBox באופן זמני לציור
             ((Control)sender).Controls.Add(pictureBox);
-
-            // צייר את שם החבר
             using (Font font = new Font("Arial", 10, FontStyle.Regular))
             {
                 e.Graphics.DrawString(listBoxItem.Name, font, Brushes.Black, e.Bounds.X + 50, e.Bounds.Y + 10);
             }
 
-            e.DrawFocusRectangle(); // צייר מסגרת כאשר הפריט בפוקוס
+            e.DrawFocusRectangle(); 
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void friendsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void postStatusButton_Click(object sender, EventArgs e)
         {
@@ -263,10 +231,16 @@ namespace BasicFacebookFeatures
             WeatherCheckWindow weatherCheck = new WeatherCheckWindow();
 
             weatherCheck.setEventsList(m_LoginResult.LoggedInUser.Events);
-
             weatherCheck.ShowDialog();
-
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var sortedLikedPages = m_LoginResult.LoggedInUser.LikedPages.OrderBy(page => page.LikesCount).ToList();
+            SortedPages sortedPagesWindow = new SortedPages();
+
+            sortedPagesWindow.setSortedPagesListBox(sortedLikedPages);
+            sortedPagesWindow.ShowDialog();
+        }
     }
 }
