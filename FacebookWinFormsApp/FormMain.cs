@@ -4,7 +4,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
+using Facebook;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BasicFacebookFeatures
 {
@@ -67,7 +70,7 @@ namespace BasicFacebookFeatures
                 //    "user_photos"
                 //);
 
-                string id = "EAAMZB8alt53YBO9kPj5chSF7ufZBjuhmmGBwy1WNnZCz4HGYnEuU4lf4fK4mVeZBkJBRayJO96H6pVMZBN5u8VIFx5xlxHqv2X7rKRGqvYRJkc24ZC3t46bfhMmSHXRDZASZAOCR5wgbus5yRLhZB3IAPhnJQU6loyCDMucxGZBXa6e67u6DiStZCL5OyV47aGOdx1PKs5Evyg5iMoVeVXKpll5lKwEYP9eQ7JzkAeZBDQZDZD";
+                string id = "EAAMZB8alt53YBO3BZBZCrOQaqgPyXOVEnlze7lsAbWXrQqMI2CfvlZBS1QOLeHxkWPYEAKzdlOVK0Sa52WrgiFZC2nb0RR0trZCQP1SUYY7xMQV6rUpyl90eZCCcnYq3QdiD7VUb382VihCK77EtY3kCCMneVQ9TVZAQr8jcu5wk9rdYrEaiSC2SrEP27daGItxunREwJO7OdMACuclKvZC2bbsd6F82DCkUZADi00bgZDZD";
 
                 m_LoginResult = FacebookService.Connect(id);
 
@@ -83,10 +86,10 @@ namespace BasicFacebookFeatures
                     albumsListBox.DrawItem += ListBox_DrawItem;
                     likedPagesListBox.DrawItem += ListBox_DrawItem;
                     showComponents();
-                    await loadNewsFeedAsync();
-                    await loadFriendsAsync();
-                    await loadAlbumsAsync();
-                    await loadPagesAsync();
+                    //await loadNewsFeedAsync();
+                    //await loadFriendsAsync();
+                    //await loadAlbumsAsync();
+                    //await loadPagesAsync();
                 }
                 else
                 {
@@ -242,5 +245,28 @@ namespace BasicFacebookFeatures
         {
 
         }
+
+        private void postStatusButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FacebookWrapper.ObjectModel.Status postedStatus = m_LoginResult.LoggedInUser.PostStatus(postTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void checkWeatherButton_Click(object sender, EventArgs e)
+        {
+            WeatherCheckWindow weatherCheck = new WeatherCheckWindow();
+
+            weatherCheck.setEventsList(m_LoginResult.LoggedInUser.Events);
+
+            weatherCheck.ShowDialog();
+
+        }
+
     }
 }
