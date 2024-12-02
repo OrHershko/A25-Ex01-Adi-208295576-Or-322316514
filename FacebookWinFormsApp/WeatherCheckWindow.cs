@@ -19,17 +19,17 @@ namespace BasicFacebookFeatures
 
         public void setEventsList(FacebookObjectCollection<Event> i_FacebookEvents)
         {
-            //if(i_FacebookEvents == null)
-            //{
-            //    foreach(Event facebookEvent in i_FacebookEvents)
-            //    {
-            //        FacebookEvent FacebookEventWrapper = new FacebookEvent(
-            //            facebookEvent.Name,
-            //            facebookEvent.StartTime,
-            //            facebookEvent.Location);
-            //        eventsListBox.Items.Add(FacebookEventWrapper);
-            //    }
-            //}
+            if (i_FacebookEvents == null)
+            {
+                //foreach (Event facebookEvent in i_FacebookEvents)
+                //{
+                //    FacebookEventWrapper facebookEventWrapper = new FacebookEventWrapper(
+                //        facebookEvent.Name,
+                //        facebookEvent.StartTime,
+                //        facebookEvent.Location);
+                //    eventsListBox.Items.Add(facebookEventWrapper);
+                //}
+            }
 
             FacebookEventWrapper FacebookEventWrapper = new FacebookEventWrapper("Test", new DateTime(2024, 12, 3), "תל אביב");
             eventsListBox.Items.Add(FacebookEventWrapper);
@@ -46,11 +46,10 @@ namespace BasicFacebookFeatures
                 }
                 else
                 {
-                    MessageBox.Show("לאירוע הנבחר חסר מידע על מיקום או תאריך.");
+                    MessageBox.Show("The selected event is missing information about time and date.");
                 }
             }
         }
-
 
         private async Task<string> fetchWeatherDataAsync(string i_Location, DateTime i_EventDate)
         {

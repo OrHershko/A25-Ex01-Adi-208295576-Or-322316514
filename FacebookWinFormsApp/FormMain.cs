@@ -67,18 +67,16 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                //m_LoginResult = FacebookService.Login(
-                //    "913632580724598",
-                //    "email",
-                //    "public_profile",
-                //    "user_friends",
-                //    "user_likes",
-                //    "user_posts",
-                //    "user_photos"
-                //);
+                m_LoginResult = FacebookService.Login(
+                    "913632580724598",
+                    "email",
+                    "public_profile",
+                    "user_friends",
+                    "user_likes",
+                    "user_posts",
+                    "user_photos"
+                );
 
-                string id = "EAAMZB8alt53YBO3BZBZCrOQaqgPyXOVEnlze7lsAbWXrQqMI2CfvlZBS1QOLeHxkWPYEAKzdlOVK0Sa52WrgiFZC2nb0RR0trZCQP1SUYY7xMQV6rUpyl90eZCCcnYq3QdiD7VUb382VihCK77EtY3kCCMneVQ9TVZAQr8jcu5wk9rdYrEaiSC2SrEP27daGItxunREwJO7OdMACuclKvZC2bbsd6F82DCkUZADi00bgZDZD";
-                m_LoginResult = FacebookService.Connect(id);
 
                 if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
                 {
