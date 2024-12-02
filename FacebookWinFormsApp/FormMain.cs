@@ -90,7 +90,7 @@ namespace BasicFacebookFeatures
                     albumsListBox.DrawItem += ListBox_DrawItem;
                     likedPagesListBox.DrawItem += ListBox_DrawItem;
                     showComponents();
-                    await loadNewsFeedAsync();
+                    loadNewsFeedAsync();
                     await loadFriendsAsync();
                     await loadAlbumsAsync();
                     await loadPagesAsync();
@@ -160,13 +160,13 @@ namespace BasicFacebookFeatures
                     {
                         listBox.Invoke((Action)(() =>
                                                        {
-                                                           addAction(listBox, item); // מבצע את הפעולה על כל פריט
+                                                           addAction(listBox, item); 
                                                        }));
                     }
                 });
         }
 
-        private async Task loadNewsFeedAsync()
+        private void loadNewsFeedAsync()
         {
             try
             {
