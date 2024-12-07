@@ -3,7 +3,7 @@
 
 namespace BasicFacebookFeatures
 {
-    partial class WeatherCheckWindow
+    partial class FormWeatherCheck
     {
         /// <summary>
         /// Required designer variable.
@@ -31,61 +31,62 @@ namespace BasicFacebookFeatures
         /// </summary>
         private void InitializeComponent()
         {
-            this.eventsListBox = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.label2 = new System.Windows.Forms.Label();
+            this.listBoxEvents = new System.Windows.Forms.ListBox();
+            this.labelUpcomingEvents = new System.Windows.Forms.Label();
+            this.webBrowserWeather = new System.Windows.Forms.WebBrowser();
+            this.labelWeather = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // eventsListBox
+            // listBoxEvents
             // 
-            this.eventsListBox.FormattingEnabled = true;
-            this.eventsListBox.Location = new System.Drawing.Point(96, 68);
-            this.eventsListBox.Name = "eventsListBox";
-            this.eventsListBox.Size = new System.Drawing.Size(243, 355);
-            this.eventsListBox.TabIndex = 0;
+            this.listBoxEvents.FormattingEnabled = true;
+            this.listBoxEvents.Location = new System.Drawing.Point(96, 68);
+            this.listBoxEvents.Name = "listBoxEvents";
+            this.listBoxEvents.Size = new System.Drawing.Size(243, 355);
+            this.listBoxEvents.TabIndex = 0;
+            this.listBoxEvents.SelectedIndexChanged += new System.EventHandler(this.listBoxEvents_SelectedIndexChanged);
             // 
-            // label1
+            // labelUpcomingEvents
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(93, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Upcoming Events";
+            this.labelUpcomingEvents.AutoSize = true;
+            this.labelUpcomingEvents.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUpcomingEvents.Location = new System.Drawing.Point(93, 36);
+            this.labelUpcomingEvents.Name = "labelUpcomingEvents";
+            this.labelUpcomingEvents.Size = new System.Drawing.Size(134, 16);
+            this.labelUpcomingEvents.TabIndex = 1;
+            this.labelUpcomingEvents.Text = "Upcoming Events";
             // 
-            // webBrowser1
+            // webBrowserWeather
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(383, 70);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.ScriptErrorsSuppressed = true;
-            this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(378, 353);
-            this.webBrowser1.TabIndex = 2;
+            this.webBrowserWeather.Location = new System.Drawing.Point(383, 70);
+            this.webBrowserWeather.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserWeather.Name = "webBrowserWeather";
+            this.webBrowserWeather.ScriptErrorsSuppressed = true;
+            this.webBrowserWeather.ScrollBarsEnabled = false;
+            this.webBrowserWeather.Size = new System.Drawing.Size(378, 353);
+            this.webBrowserWeather.TabIndex = 2;
             // 
-            // label2
+            // labelWeather
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(380, 36);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Weather";
+            this.labelWeather.AutoSize = true;
+            this.labelWeather.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWeather.Location = new System.Drawing.Point(380, 36);
+            this.labelWeather.Name = "labelWeather";
+            this.labelWeather.Size = new System.Drawing.Size(72, 16);
+            this.labelWeather.TabIndex = 3;
+            this.labelWeather.Text = "Weather";
             // 
-            // WeatherCheckWindow
+            // FormWeatherCheck
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.webBrowser1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.eventsListBox);
-            this.Name = "WeatherCheckWindow";
-            this.Text = "WeatherCheckWindow";
+            this.Controls.Add(this.labelWeather);
+            this.Controls.Add(this.webBrowserWeather);
+            this.Controls.Add(this.labelUpcomingEvents);
+            this.Controls.Add(this.listBoxEvents);
+            this.Name = "FormWeatherCheck";
+            this.Text = "Upcoming Events Weather Check";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,9 +94,9 @@ namespace BasicFacebookFeatures
 
         #endregion
 
-        private System.Windows.Forms.ListBox eventsListBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox listBoxEvents;
+        private System.Windows.Forms.Label labelUpcomingEvents;
+        private System.Windows.Forms.WebBrowser webBrowserWeather;
+        private System.Windows.Forms.Label labelWeather;
     }
 }

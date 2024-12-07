@@ -12,45 +12,45 @@ using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
-    public partial class SortedPages : Form
+    public partial class formSortedPages : Form
     {
         private List<Page> m_SortedPages;
 
-        public SortedPages()
+        public formSortedPages()
         {
             InitializeComponent();
-            sortedPagesListBox.DrawItem += FormMain.ListBox_DrawItem;
+            listBoxSortedPages.DrawItem += FormMain.ListBox_DrawItem;
         }
 
 
         public void InitSortedPagesWindow(List<Page> i_SortedLikedPages)
         {
             m_SortedPages = i_SortedLikedPages;
-            sortedPagesListBox.Items.Clear();
+            listBoxSortedPages.Items.Clear();
 
             foreach (var page in i_SortedLikedPages)
             {
-                sortedPagesListBox.Items.Add(new ListBoxItem(page.Name, page.PictureSmallURL));
+                listBoxSortedPages.Items.Add(new ListBoxItem(page.Name, page.PictureSmallURL));
             }
 
             int totalPages = i_SortedLikedPages.Count;
             string mostLikedPage = i_SortedLikedPages.OrderByDescending(p => p.LikesCount).FirstOrDefault()?.Name ?? "None";
             double averageLikes = i_SortedLikedPages.Average(p => p.LikesCount).HasValue ? i_SortedLikedPages.Average(p => p.LikesCount).Value : 0;
 
-            totalPagesLabel.Text = $"Total Pages: {totalPages}";
-            mostLikedPageLabel.Text = $"Most Liked Page: {mostLikedPage}";
-            averageLikesLabel.Text = $"Average Likes: {averageLikes:F2}";
+            labelTotalPages.Text = $"Total Pages: {totalPages}";
+            labelmosLLikedPage.Text = $"Most Liked Page: {mostLikedPage}";
+            labelAverageLikes.Text = $"Average Likes: {averageLikes:F2}";
 
             updateLikesChart(i_SortedLikedPages);
         }
 
         private void updateLikesChart(List<Page> i_SortedLikedPages)
         {
-            likesChart.Series.Clear();
-            likesChart.ChartAreas.Clear();
+            chartLikes.Series.Clear();
+            chartLikes.ChartAreas.Clear();
 
             var chartArea = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            likesChart.ChartAreas.Add(chartArea);
+            chartLikes.ChartAreas.Add(chartArea);
 
             var series = new System.Windows.Forms.DataVisualization.Charting.Series
                              {
@@ -63,7 +63,7 @@ namespace BasicFacebookFeatures
                 series.Points.AddXY(page.Name, page.LikesCount);
             }
 
-            likesChart.Series.Add(series);
+            chartLikes.Series.Add(series);
         }
 
         private void playGameButton_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace BasicFacebookFeatures
                 return;
             }
 
-            GuessGameForm gameForm = new GuessGameForm(m_SortedPages);
+            formGuessGame gameForm = new formGuessGame(m_SortedPages);
             gameForm.ShowDialog();
         }
 

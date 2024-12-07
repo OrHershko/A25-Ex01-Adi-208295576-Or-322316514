@@ -33,21 +33,21 @@ namespace BasicFacebookFeatures
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBoxFacebookLogo = new System.Windows.Forms.PictureBox();
-            this.sortPagesButton = new System.Windows.Forms.Button();
-            this.checkWeatherButton = new System.Windows.Forms.Button();
-            this.postStatusButton = new System.Windows.Forms.Button();
-            this.postTextBox = new System.Windows.Forms.TextBox();
+            this.buttonSortPage = new System.Windows.Forms.Button();
+            this.buttonCheckWeather = new System.Windows.Forms.Button();
+            this.buttonPostStatus = new System.Windows.Forms.Button();
+            this.textBoxPost = new System.Windows.Forms.TextBox();
             this.usernameLabel = new System.Windows.Forms.Label();
-            this.albumsLabel = new System.Windows.Forms.Label();
-            this.likedPagesLabel = new System.Windows.Forms.Label();
-            this.friendsLabel = new System.Windows.Forms.Label();
-            this.likedPagesListBox = new System.Windows.Forms.ListBox();
-            this.albumsListBox = new System.Windows.Forms.ListBox();
-            this.friendsListBox = new System.Windows.Forms.ListBox();
+            this.labelAlbums = new System.Windows.Forms.Label();
+            this.labelLikedPages = new System.Windows.Forms.Label();
+            this.labelFriends = new System.Windows.Forms.Label();
+            this.listBoxLikedPages = new System.Windows.Forms.ListBox();
+            this.listBoxAlbums = new System.Windows.Forms.ListBox();
+            this.listBoxFriends = new System.Windows.Forms.ListBox();
             this.flowLayoutPanelFeed = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.textBoxAppID = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelAppId = new System.Windows.Forms.Label();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -67,21 +67,21 @@ namespace BasicFacebookFeatures
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.pictureBoxFacebookLogo);
-            this.tabPage1.Controls.Add(this.sortPagesButton);
-            this.tabPage1.Controls.Add(this.checkWeatherButton);
-            this.tabPage1.Controls.Add(this.postStatusButton);
-            this.tabPage1.Controls.Add(this.postTextBox);
+            this.tabPage1.Controls.Add(this.buttonSortPage);
+            this.tabPage1.Controls.Add(this.buttonCheckWeather);
+            this.tabPage1.Controls.Add(this.buttonPostStatus);
+            this.tabPage1.Controls.Add(this.textBoxPost);
             this.tabPage1.Controls.Add(this.usernameLabel);
-            this.tabPage1.Controls.Add(this.albumsLabel);
-            this.tabPage1.Controls.Add(this.likedPagesLabel);
-            this.tabPage1.Controls.Add(this.friendsLabel);
-            this.tabPage1.Controls.Add(this.likedPagesListBox);
-            this.tabPage1.Controls.Add(this.albumsListBox);
-            this.tabPage1.Controls.Add(this.friendsListBox);
+            this.tabPage1.Controls.Add(this.labelAlbums);
+            this.tabPage1.Controls.Add(this.labelLikedPages);
+            this.tabPage1.Controls.Add(this.labelFriends);
+            this.tabPage1.Controls.Add(this.listBoxLikedPages);
+            this.tabPage1.Controls.Add(this.listBoxAlbums);
+            this.tabPage1.Controls.Add(this.listBoxFriends);
             this.tabPage1.Controls.Add(this.flowLayoutPanelFeed);
             this.tabPage1.Controls.Add(this.pictureBoxProfile);
             this.tabPage1.Controls.Add(this.textBoxAppID);
-            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.labelAppId);
             this.tabPage1.Controls.Add(this.buttonLogout);
             this.tabPage1.Controls.Add(this.buttonLogin);
             this.tabPage1.Location = new System.Drawing.Point(4, 27);
@@ -102,44 +102,44 @@ namespace BasicFacebookFeatures
             this.pictureBoxFacebookLogo.TabIndex = 68;
             this.pictureBoxFacebookLogo.TabStop = false;
             // 
-            // sortPagesButton
+            // buttonSortPage
             // 
-            this.sortPagesButton.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sortPagesButton.Location = new System.Drawing.Point(15, 198);
-            this.sortPagesButton.Name = "sortPagesButton";
-            this.sortPagesButton.Size = new System.Drawing.Size(270, 71);
-            this.sortPagesButton.TabIndex = 67;
-            this.sortPagesButton.Text = "Sort Liked Pages By Popularity";
-            this.sortPagesButton.UseVisualStyleBackColor = true;
-            this.sortPagesButton.Click += new System.EventHandler(this.sortedPagesButton_Click);
+            this.buttonSortPage.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSortPage.Location = new System.Drawing.Point(15, 198);
+            this.buttonSortPage.Name = "buttonSortPage";
+            this.buttonSortPage.Size = new System.Drawing.Size(270, 71);
+            this.buttonSortPage.TabIndex = 67;
+            this.buttonSortPage.Text = "Sort Liked Pages By Popularity And Play The Guessing Game";
+            this.buttonSortPage.UseVisualStyleBackColor = true;
+            this.buttonSortPage.Click += new System.EventHandler(this.sortedPagesButton_Click);
             // 
-            // checkWeatherButton
+            // buttonCheckWeather
             // 
-            this.checkWeatherButton.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkWeatherButton.Location = new System.Drawing.Point(15, 288);
-            this.checkWeatherButton.Name = "checkWeatherButton";
-            this.checkWeatherButton.Size = new System.Drawing.Size(270, 72);
-            this.checkWeatherButton.TabIndex = 66;
-            this.checkWeatherButton.Text = "Check Weather Around Upcoming Events On The Next 5 Days";
-            this.checkWeatherButton.UseVisualStyleBackColor = true;
-            this.checkWeatherButton.Click += new System.EventHandler(this.checkWeatherButton_Click);
+            this.buttonCheckWeather.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCheckWeather.Location = new System.Drawing.Point(15, 288);
+            this.buttonCheckWeather.Name = "buttonCheckWeather";
+            this.buttonCheckWeather.Size = new System.Drawing.Size(270, 72);
+            this.buttonCheckWeather.TabIndex = 66;
+            this.buttonCheckWeather.Text = "Check Weather Around Upcoming Events On The Next 5 Days";
+            this.buttonCheckWeather.UseVisualStyleBackColor = true;
+            this.buttonCheckWeather.Click += new System.EventHandler(this.checkWeatherButton_Click);
             // 
-            // postStatusButton
+            // buttonPostStatus
             // 
-            this.postStatusButton.Location = new System.Drawing.Point(712, 116);
-            this.postStatusButton.Name = "postStatusButton";
-            this.postStatusButton.Size = new System.Drawing.Size(73, 29);
-            this.postStatusButton.TabIndex = 65;
-            this.postStatusButton.Text = "Post";
-            this.postStatusButton.UseVisualStyleBackColor = true;
-            this.postStatusButton.Click += new System.EventHandler(this.postStatusButton_Click);
+            this.buttonPostStatus.Location = new System.Drawing.Point(712, 116);
+            this.buttonPostStatus.Name = "buttonPostStatus";
+            this.buttonPostStatus.Size = new System.Drawing.Size(73, 29);
+            this.buttonPostStatus.TabIndex = 65;
+            this.buttonPostStatus.Text = "Post";
+            this.buttonPostStatus.UseVisualStyleBackColor = true;
+            this.buttonPostStatus.Click += new System.EventHandler(this.postStatusButton_Click);
             // 
-            // postTextBox
+            // textBoxPost
             // 
-            this.postTextBox.Location = new System.Drawing.Point(328, 119);
-            this.postTextBox.Name = "postTextBox";
-            this.postTextBox.Size = new System.Drawing.Size(374, 24);
-            this.postTextBox.TabIndex = 64;
+            this.textBoxPost.Location = new System.Drawing.Point(328, 119);
+            this.textBoxPost.Name = "textBoxPost";
+            this.textBoxPost.Size = new System.Drawing.Size(374, 24);
+            this.textBoxPost.TabIndex = 64;
             // 
             // usernameLabel
             // 
@@ -150,71 +150,71 @@ namespace BasicFacebookFeatures
             this.usernameLabel.Size = new System.Drawing.Size(0, 20);
             this.usernameLabel.TabIndex = 63;
             // 
-            // albumsLabel
+            // labelAlbums
             // 
-            this.albumsLabel.AutoSize = true;
-            this.albumsLabel.Font = new System.Drawing.Font("Aharoni", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.albumsLabel.Location = new System.Drawing.Point(831, 378);
-            this.albumsLabel.Name = "albumsLabel";
-            this.albumsLabel.Size = new System.Drawing.Size(76, 19);
-            this.albumsLabel.TabIndex = 62;
-            this.albumsLabel.Text = "Albums";
+            this.labelAlbums.AutoSize = true;
+            this.labelAlbums.Font = new System.Drawing.Font("Aharoni", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAlbums.Location = new System.Drawing.Point(831, 378);
+            this.labelAlbums.Name = "labelAlbums";
+            this.labelAlbums.Size = new System.Drawing.Size(76, 19);
+            this.labelAlbums.TabIndex = 62;
+            this.labelAlbums.Text = "Albums";
             // 
-            // likedPagesLabel
+            // labelLikedPages
             // 
-            this.likedPagesLabel.AutoSize = true;
-            this.likedPagesLabel.Font = new System.Drawing.Font("Aharoni", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.likedPagesLabel.Location = new System.Drawing.Point(831, 127);
-            this.likedPagesLabel.Name = "likedPagesLabel";
-            this.likedPagesLabel.Size = new System.Drawing.Size(118, 19);
-            this.likedPagesLabel.TabIndex = 61;
-            this.likedPagesLabel.Text = "Liked Pages";
+            this.labelLikedPages.AutoSize = true;
+            this.labelLikedPages.Font = new System.Drawing.Font("Aharoni", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLikedPages.Location = new System.Drawing.Point(831, 127);
+            this.labelLikedPages.Name = "labelLikedPages";
+            this.labelLikedPages.Size = new System.Drawing.Size(118, 19);
+            this.labelLikedPages.TabIndex = 61;
+            this.labelLikedPages.Text = "Liked Pages";
             // 
-            // friendsLabel
+            // labelFriends
             // 
-            this.friendsLabel.AutoSize = true;
-            this.friendsLabel.Font = new System.Drawing.Font("Aharoni", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.friendsLabel.Location = new System.Drawing.Point(15, 378);
-            this.friendsLabel.Name = "friendsLabel";
-            this.friendsLabel.Size = new System.Drawing.Size(74, 19);
-            this.friendsLabel.TabIndex = 60;
-            this.friendsLabel.Text = "Friends";
+            this.labelFriends.AutoSize = true;
+            this.labelFriends.Font = new System.Drawing.Font("Aharoni", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFriends.Location = new System.Drawing.Point(15, 378);
+            this.labelFriends.Name = "labelFriends";
+            this.labelFriends.Size = new System.Drawing.Size(74, 19);
+            this.labelFriends.TabIndex = 60;
+            this.labelFriends.Text = "Friends";
             // 
-            // likedPagesListBox
+            // listBoxLikedPages
             // 
-            this.likedPagesListBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.likedPagesListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.likedPagesListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.likedPagesListBox.FormattingEnabled = true;
-            this.likedPagesListBox.ItemHeight = 50;
-            this.likedPagesListBox.Location = new System.Drawing.Point(835, 149);
-            this.likedPagesListBox.Name = "likedPagesListBox";
-            this.likedPagesListBox.Size = new System.Drawing.Size(287, 200);
-            this.likedPagesListBox.TabIndex = 59;
+            this.listBoxLikedPages.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxLikedPages.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxLikedPages.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBoxLikedPages.FormattingEnabled = true;
+            this.listBoxLikedPages.ItemHeight = 50;
+            this.listBoxLikedPages.Location = new System.Drawing.Point(835, 149);
+            this.listBoxLikedPages.Name = "listBoxLikedPages";
+            this.listBoxLikedPages.Size = new System.Drawing.Size(287, 200);
+            this.listBoxLikedPages.TabIndex = 59;
             // 
-            // albumsListBox
+            // listBoxAlbums
             // 
-            this.albumsListBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.albumsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.albumsListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.albumsListBox.FormattingEnabled = true;
-            this.albumsListBox.ItemHeight = 50;
-            this.albumsListBox.Location = new System.Drawing.Point(835, 402);
-            this.albumsListBox.Name = "albumsListBox";
-            this.albumsListBox.Size = new System.Drawing.Size(288, 200);
-            this.albumsListBox.TabIndex = 58;
+            this.listBoxAlbums.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxAlbums.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxAlbums.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBoxAlbums.FormattingEnabled = true;
+            this.listBoxAlbums.ItemHeight = 50;
+            this.listBoxAlbums.Location = new System.Drawing.Point(835, 402);
+            this.listBoxAlbums.Name = "listBoxAlbums";
+            this.listBoxAlbums.Size = new System.Drawing.Size(288, 200);
+            this.listBoxAlbums.TabIndex = 58;
             // 
-            // friendsListBox
+            // listBoxFriends
             // 
-            this.friendsListBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.friendsListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.friendsListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.friendsListBox.FormattingEnabled = true;
-            this.friendsListBox.ItemHeight = 50;
-            this.friendsListBox.Location = new System.Drawing.Point(19, 400);
-            this.friendsListBox.Name = "friendsListBox";
-            this.friendsListBox.Size = new System.Drawing.Size(267, 200);
-            this.friendsListBox.TabIndex = 57;
+            this.listBoxFriends.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxFriends.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxFriends.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBoxFriends.FormattingEnabled = true;
+            this.listBoxFriends.ItemHeight = 50;
+            this.listBoxFriends.Location = new System.Drawing.Point(19, 400);
+            this.listBoxFriends.Name = "listBoxFriends";
+            this.listBoxFriends.Size = new System.Drawing.Size(267, 200);
+            this.listBoxFriends.TabIndex = 57;
             // 
             // flowLayoutPanelFeed
             // 
@@ -242,15 +242,15 @@ namespace BasicFacebookFeatures
             this.textBoxAppID.Size = new System.Drawing.Size(237, 24);
             this.textBoxAppID.TabIndex = 54;
             // 
-            // label1
+            // labelAppId
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(585, 19);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 18);
-            this.label1.TabIndex = 53;
-            this.label1.Text = "App ID:";
+            this.labelAppId.AutoSize = true;
+            this.labelAppId.Location = new System.Drawing.Point(585, 19);
+            this.labelAppId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAppId.Name = "labelAppId";
+            this.labelAppId.Size = new System.Drawing.Size(55, 18);
+            this.labelAppId.TabIndex = 53;
+            this.labelAppId.Text = "App ID:";
             // 
             // buttonLogout
             // 
@@ -311,23 +311,23 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label usernameLabel;
-        private System.Windows.Forms.Label albumsLabel;
-        private System.Windows.Forms.Label likedPagesLabel;
-        private System.Windows.Forms.Label friendsLabel;
-        private System.Windows.Forms.ListBox likedPagesListBox;
-        private System.Windows.Forms.ListBox albumsListBox;
-        private System.Windows.Forms.ListBox friendsListBox;
+        private System.Windows.Forms.Label labelAlbums;
+        private System.Windows.Forms.Label labelLikedPages;
+        private System.Windows.Forms.Label labelFriends;
+        private System.Windows.Forms.ListBox listBoxLikedPages;
+        private System.Windows.Forms.ListBox listBoxAlbums;
+        private System.Windows.Forms.ListBox listBoxFriends;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelFeed;
         private System.Windows.Forms.PictureBox pictureBoxProfile;
         private System.Windows.Forms.TextBox textBoxAppID;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelAppId;
         private System.Windows.Forms.Button buttonLogout;
         private System.Windows.Forms.Button buttonLogin;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.Button postStatusButton;
-        private System.Windows.Forms.TextBox postTextBox;
-        private System.Windows.Forms.Button checkWeatherButton;
-        private System.Windows.Forms.Button sortPagesButton;
+        private System.Windows.Forms.Button buttonPostStatus;
+        private System.Windows.Forms.TextBox textBoxPost;
+        private System.Windows.Forms.Button buttonCheckWeather;
+        private System.Windows.Forms.Button buttonSortPage;
         private System.Windows.Forms.PictureBox pictureBoxFacebookLogo;
     }
 }

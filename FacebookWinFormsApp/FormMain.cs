@@ -23,34 +23,34 @@ namespace BasicFacebookFeatures
 
         private void hideComponents()
         {
-            friendsListBox.Hide();
-            friendsLabel.Hide();
-            albumsListBox.Hide();
-            albumsLabel.Hide();
-            likedPagesListBox.Hide();
-            likedPagesLabel.Hide();
+            listBoxFriends.Hide();
+            labelFriends.Hide();
+            listBoxAlbums.Hide();
+            labelAlbums.Hide();
+            listBoxLikedPages.Hide();
+            labelLikedPages.Hide();
             flowLayoutPanelFeed.Hide();
             usernameLabel.Hide();
-            sortPagesButton.Hide();
-            checkWeatherButton.Hide();
-            postTextBox.Hide();
-            postStatusButton.Hide();
+            buttonSortPage.Hide();
+            buttonCheckWeather.Hide();
+            textBoxPost.Hide();
+            buttonPostStatus.Hide();
         }
 
         private void showComponents()
         {
-            friendsListBox.Show();
-            friendsLabel.Show();
-            albumsListBox.Show();
-            albumsLabel.Show();
-            likedPagesListBox.Show();
-            likedPagesLabel.Show();
+            listBoxFriends.Show();
+            labelFriends.Show();
+            listBoxAlbums.Show();
+            labelAlbums.Show();
+            listBoxLikedPages.Show();
+            labelLikedPages.Show();
             flowLayoutPanelFeed.Show();
             usernameLabel.Show();
-            sortPagesButton.Show();
-            checkWeatherButton.Show();
-            postTextBox.Show();
-            postStatusButton.Show();
+            buttonSortPage.Show();
+            buttonCheckWeather.Show();
+            textBoxPost.Show();
+            buttonPostStatus.Show();
         }
 
         private async void buttonLogin_Click(object sender, EventArgs e)
@@ -77,9 +77,8 @@ namespace BasicFacebookFeatures
                 //    "user_photos"
                 //);
 
-
                 m_LoginResult = FacebookService.Connect(
-                    "EAAMZB8alt53YBO1E5yKeGubcsphsGwvOoEcexrfFeAIQ76EjOMknDeFjFPZAbXMeJQmFaWPNpqISSH8eeHvZC6Py4nIeIRKZBC4p0giweH2HK3aAy7odJt3ZBQIKY1ThHpauOZBkT7bKh0hiR7V5ZCDFLuoMvvbZBy5o8KUthuOfT4uZARTTGKTwZCT2DZAvqHMZCr9xgF59ZAikKH5ASyZCliE8szD3PKrGsZC");
+                    "EAAMZB8alt53YBO1CUa4G0ZAioSdGpFdZAwZBarj6grzLQTnUQbNuJPgJesn7MTENmrXBttzHYRzHDTSUAZAUXuE4KG9ZBeeWvmV1FLWAcruDfC8XcTqmhatTSZCPJMnXSm6Dnv9LO9K3Mgz6VaDTB6ZCCcs4SRAzfWviQ6xCo77LnL5hXDdKXcPrqp404jEHJWDsxeztYdkuTBE6ZBDZArMnwZD");
 
                 if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
                 {
@@ -89,9 +88,9 @@ namespace BasicFacebookFeatures
                     pictureBoxProfile.ImageLocation = m_LoginResult.LoggedInUser.PictureNormalURL;
                     buttonLogin.Enabled = false;
                     buttonLogout.Enabled = true;
-                    friendsListBox.DrawItem += ListBox_DrawItem;
-                    albumsListBox.DrawItem += ListBox_DrawItem;
-                    likedPagesListBox.DrawItem += ListBox_DrawItem;
+                    listBoxFriends.DrawItem += ListBox_DrawItem;
+                    listBoxAlbums.DrawItem += ListBox_DrawItem;
+                    listBoxLikedPages.DrawItem += ListBox_DrawItem;
                     showComponents();
                     loadNewsFeedAsync();
                     await loadFriendsAsync();
@@ -124,7 +123,7 @@ namespace BasicFacebookFeatures
         private async Task loadFriendsAsync()
         {
             await populateListBoxAsync(
-                friendsListBox,
+                listBoxFriends,
                 m_LoginResult.LoggedInUser.Friends,
                 (listBox, friend) =>
                     {
@@ -135,7 +134,7 @@ namespace BasicFacebookFeatures
         private async Task loadAlbumsAsync()
         {
             await populateListBoxAsync(
-                albumsListBox,
+                listBoxAlbums,
                 m_LoginResult.LoggedInUser.Albums,
                 (listBox, album) =>
                     {
@@ -146,7 +145,7 @@ namespace BasicFacebookFeatures
         private async Task loadPagesAsync()
         {
             await populateListBoxAsync(
-                likedPagesListBox,
+                listBoxLikedPages,
                 m_LoginResult.LoggedInUser.LikedPages,
                 (listBox, page) =>
                     {
@@ -227,7 +226,7 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                FacebookWrapper.ObjectModel.Status postedStatus = m_LoginResult.LoggedInUser.PostStatus(postTextBox.Text);
+                FacebookWrapper.ObjectModel.Status postedStatus = m_LoginResult.LoggedInUser.PostStatus(textBoxPost.Text);
             }
             catch (Exception ex)
             {
@@ -237,7 +236,7 @@ namespace BasicFacebookFeatures
 
         private void checkWeatherButton_Click(object sender, EventArgs e)
         {
-            WeatherCheckWindow weatherCheck = new WeatherCheckWindow();
+            FormWeatherCheck weatherCheck = new FormWeatherCheck();
 
             weatherCheck.SetEventsList(m_LoginResult.LoggedInUser.Events);
             weatherCheck.ShowDialog();
@@ -246,7 +245,7 @@ namespace BasicFacebookFeatures
         private void sortedPagesButton_Click(object sender, EventArgs e)
         {
             var sortedLikedPages = m_LoginResult.LoggedInUser.LikedPages.OrderBy(page => page.LikesCount).ToList();
-            SortedPages sortedPagesWindow = new SortedPages();
+            formSortedPages sortedPagesWindow = new formSortedPages();
 
             sortedPagesWindow.InitSortedPagesWindow(sortedLikedPages);
             sortedPagesWindow.ShowDialog();

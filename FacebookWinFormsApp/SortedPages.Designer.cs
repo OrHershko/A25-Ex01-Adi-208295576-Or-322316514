@@ -1,6 +1,6 @@
 ﻿namespace BasicFacebookFeatures
 {
-    partial class SortedPages
+    partial class formSortedPages
     {
         /// <summary>
         /// Required designer variable.
@@ -28,95 +28,95 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.sortedPagesListBox = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.totalPagesLabel = new System.Windows.Forms.Label();
-            this.mostLikedPageLabel = new System.Windows.Forms.Label();
-            this.averageLikesLabel = new System.Windows.Forms.Label();
-            this.likesChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.playGameButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.likesChart)).BeginInit();
+            this.listBoxSortedPages = new System.Windows.Forms.ListBox();
+            this.labelLikedPagesSorted = new System.Windows.Forms.Label();
+            this.labelTotalPages = new System.Windows.Forms.Label();
+            this.labelmosLLikedPage = new System.Windows.Forms.Label();
+            this.labelAverageLikes = new System.Windows.Forms.Label();
+            this.chartLikes = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.buttonPlayGame = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.chartLikes)).BeginInit();
             this.SuspendLayout();
             // 
-            // sortedPagesListBox
+            // listBoxSortedPages
             // 
-            this.sortedPagesListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.sortedPagesListBox.FormattingEnabled = true;
-            this.sortedPagesListBox.ItemHeight = 50;
-            this.sortedPagesListBox.Location = new System.Drawing.Point(15, 70);
-            this.sortedPagesListBox.Name = "sortedPagesListBox";
-            this.sortedPagesListBox.Size = new System.Drawing.Size(266, 304);
-            this.sortedPagesListBox.TabIndex = 0;
+            this.listBoxSortedPages.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.listBoxSortedPages.FormattingEnabled = true;
+            this.listBoxSortedPages.ItemHeight = 50;
+            this.listBoxSortedPages.Location = new System.Drawing.Point(15, 70);
+            this.listBoxSortedPages.Name = "listBoxSortedPages";
+            this.listBoxSortedPages.Size = new System.Drawing.Size(266, 304);
+            this.listBoxSortedPages.TabIndex = 0;
             // 
-            // label1
+            // labelLikedPagesSorted
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(362, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Liked Pages Sorted From Most to Least Popular";
+            this.labelLikedPagesSorted.AutoSize = true;
+            this.labelLikedPagesSorted.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLikedPagesSorted.Location = new System.Drawing.Point(12, 37);
+            this.labelLikedPagesSorted.Name = "labelLikedPagesSorted";
+            this.labelLikedPagesSorted.Size = new System.Drawing.Size(362, 16);
+            this.labelLikedPagesSorted.TabIndex = 1;
+            this.labelLikedPagesSorted.Text = "Liked Pages Sorted From Most to Least Popular";
             // 
-            // totalPagesLabel
+            // labelTotalPages
             // 
-            this.totalPagesLabel.AutoSize = true;
-            this.totalPagesLabel.Location = new System.Drawing.Point(316, 81);
-            this.totalPagesLabel.Name = "totalPagesLabel";
-            this.totalPagesLabel.Size = new System.Drawing.Size(69, 13);
-            this.totalPagesLabel.TabIndex = 2;
-            this.totalPagesLabel.Text = "Total pages: ";
+            this.labelTotalPages.AutoSize = true;
+            this.labelTotalPages.Location = new System.Drawing.Point(316, 81);
+            this.labelTotalPages.Name = "labelTotalPages";
+            this.labelTotalPages.Size = new System.Drawing.Size(69, 13);
+            this.labelTotalPages.TabIndex = 2;
+            this.labelTotalPages.Text = "Total pages: ";
             // 
-            // mostLikedPageLabel
+            // labelmosLLikedPage
             // 
-            this.mostLikedPageLabel.AutoSize = true;
-            this.mostLikedPageLabel.Location = new System.Drawing.Point(316, 124);
-            this.mostLikedPageLabel.Name = "mostLikedPageLabel";
-            this.mostLikedPageLabel.Size = new System.Drawing.Size(93, 13);
-            this.mostLikedPageLabel.TabIndex = 3;
-            this.mostLikedPageLabel.Text = "Most Liked Page: ";
+            this.labelmosLLikedPage.AutoSize = true;
+            this.labelmosLLikedPage.Location = new System.Drawing.Point(316, 124);
+            this.labelmosLLikedPage.Name = "labelmosLLikedPage";
+            this.labelmosLLikedPage.Size = new System.Drawing.Size(93, 13);
+            this.labelmosLLikedPage.TabIndex = 3;
+            this.labelmosLLikedPage.Text = "Most Liked Page: ";
             // 
-            // averageLikesLabel
+            // labelAverageLikes
             // 
-            this.averageLikesLabel.AutoSize = true;
-            this.averageLikesLabel.Location = new System.Drawing.Point(316, 168);
-            this.averageLikesLabel.Name = "averageLikesLabel";
-            this.averageLikesLabel.Size = new System.Drawing.Size(81, 13);
-            this.averageLikesLabel.TabIndex = 4;
-            this.averageLikesLabel.Text = "Avarage Likes: ";
+            this.labelAverageLikes.AutoSize = true;
+            this.labelAverageLikes.Location = new System.Drawing.Point(316, 168);
+            this.labelAverageLikes.Name = "labelAverageLikes";
+            this.labelAverageLikes.Size = new System.Drawing.Size(81, 13);
+            this.labelAverageLikes.TabIndex = 4;
+            this.labelAverageLikes.Text = "Avarage Likes: ";
             // 
-            // likesChart
+            // chartLikes
             // 
-            this.likesChart.Location = new System.Drawing.Point(319, 205);
-            this.likesChart.Name = "likesChart";
-            this.likesChart.Size = new System.Drawing.Size(308, 176);
-            this.likesChart.TabIndex = 5;
+            this.chartLikes.Location = new System.Drawing.Point(319, 205);
+            this.chartLikes.Name = "chartLikes";
+            this.chartLikes.Size = new System.Drawing.Size(308, 176);
+            this.chartLikes.TabIndex = 5;
             // 
-            // playGameButton
+            // buttonPlayGame
             // 
-            this.playGameButton.Location = new System.Drawing.Point(48, 392);
-            this.playGameButton.Name = "playGameButton";
-            this.playGameButton.Size = new System.Drawing.Size(196, 37);
-            this.playGameButton.TabIndex = 6;
-            this.playGameButton.Text = "Play The Guessing Game!";
-            this.playGameButton.UseVisualStyleBackColor = true;
-            this.playGameButton.Click += new System.EventHandler(this.playGameButton_Click);
+            this.buttonPlayGame.Location = new System.Drawing.Point(48, 392);
+            this.buttonPlayGame.Name = "buttonPlayGame";
+            this.buttonPlayGame.Size = new System.Drawing.Size(196, 37);
+            this.buttonPlayGame.TabIndex = 6;
+            this.buttonPlayGame.Text = "Play The Guessing Game!";
+            this.buttonPlayGame.UseVisualStyleBackColor = true;
+            this.buttonPlayGame.Click += new System.EventHandler(this.playGameButton_Click);
             // 
-            // SortedPages
+            // formSortedPages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 450);
-            this.Controls.Add(this.playGameButton);
-            this.Controls.Add(this.likesChart);
-            this.Controls.Add(this.averageLikesLabel);
-            this.Controls.Add(this.mostLikedPageLabel);
-            this.Controls.Add(this.totalPagesLabel);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.sortedPagesListBox);
-            this.Name = "SortedPages";
-            this.Text = "SortedPages";
-            ((System.ComponentModel.ISupportInitialize)(this.likesChart)).EndInit();
+            this.Controls.Add(this.buttonPlayGame);
+            this.Controls.Add(this.chartLikes);
+            this.Controls.Add(this.labelAverageLikes);
+            this.Controls.Add(this.labelmosLLikedPage);
+            this.Controls.Add(this.labelTotalPages);
+            this.Controls.Add(this.labelLikedPagesSorted);
+            this.Controls.Add(this.listBoxSortedPages);
+            this.Name = "formSortedPages";
+            this.Text = "Sorted Pages";
+            ((System.ComponentModel.ISupportInitialize)(this.chartLikes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,12 +124,12 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox sortedPagesListBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label totalPagesLabel;
-        private System.Windows.Forms.Label mostLikedPageLabel;
-        private System.Windows.Forms.Label averageLikesLabel;
-        private System.Windows.Forms.DataVisualization.Charting.Chart likesChart;
-        private System.Windows.Forms.Button playGameButton;
+        private System.Windows.Forms.ListBox listBoxSortedPages;
+        private System.Windows.Forms.Label labelLikedPagesSorted;
+        private System.Windows.Forms.Label labelTotalPages;
+        private System.Windows.Forms.Label labelmosLLikedPage;
+        private System.Windows.Forms.Label labelAverageLikes;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartLikes;
+        private System.Windows.Forms.Button buttonPlayGame;
     }
 }

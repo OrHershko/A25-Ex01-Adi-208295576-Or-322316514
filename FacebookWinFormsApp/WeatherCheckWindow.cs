@@ -9,50 +9,32 @@ using System.Windows.Forms;
 
 namespace BasicFacebookFeatures
 {
-    public partial class WeatherCheckWindow : Form
+    public partial class FormWeatherCheck : Form
     {
-        public WeatherCheckWindow()
+        public FormWeatherCheck()
         {
             InitializeComponent();
-            eventsListBox.SelectedIndexChanged += eventsListBox_SelectedIndexChanged;
         }
 
         public void SetEventsList(FacebookObjectCollection<Event> i_FacebookEvents)
         {
             if (i_FacebookEvents == null)
             {
-                //foreach (Event facebookEvent in i_FacebookEvents)
-                //{
-                //    if(facebookEvent.StartTime.HasValue)
-                //        if(facebookEvent.StartTime.Value.Date < DateTime.Now.AddDays(5))
-                //        {
-                //            FacebookEventWrapper facebookEventWrapper = new FacebookEventWrapper(
-                //                facebookEvent.Name,
-                //                facebookEvent.StartTime,
-                //                facebookEvent.Location);
-                //            eventsListBox.Items.Add(facebookEventWrapper);
-                //        }
-                //}
-            }
-
-            FacebookEventWrapper FacebookEventWrapper = new FacebookEventWrapper("Test", new DateTime(2024, 12, 3), "תל אביב");
-            eventsListBox.Items.Add(FacebookEventWrapper);
-        }
-
-        private void eventsListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (eventsListBox.SelectedItem is FacebookEventWrapper selectedEvent)
-            {
-                if (!string.IsNullOrEmpty(selectedEvent.Location) && selectedEvent.Date.HasValue)
+                foreach (Event facebookEvent in i_FacebookEvents)
                 {
-                    displayWeatherForEvent(selectedEvent.Location, selectedEvent.Date.Value);
-                    displayMapOfArea();
-                }
-                else
-                {
-                    MessageBox.Show("The selected event is missing information about time and date.");
+                    if (facebookEvent.StartTime.HasValue)
+                        if (facebookEvent.StartTime.Value.Date < DateTime.Now.AddDays(5) && facebookEvent.StartTime.Value.Date > DateTime.Now)
+                        {
+                            FacebookEventWrapper facebookEventWrapper = new FacebookEventWrapper(
+                                facebookEvent.Name,
+                                facebookEvent.StartTime,
+                                facebookEvent.Location);
+                            listBoxEvents.Items.Add(facebookEventWrapper);
+                        }
                 }
             }
+
+            //listBoxEvents.Items.Add(new FacebookEventWrapper("avi", DateTime.Now, "תל אביב") );
         }
 
         private async Task<string> fetchWeatherDataAsync(string i_Location, DateTime i_EventDate)
@@ -127,13 +109,13 @@ namespace BasicFacebookFeatures
         }
 
 
-        public async void displayWeatherForEvent(string i_Location, DateTime i_EventDate)
+        private async void displayWeatherForEvent(string i_Location, DateTime i_EventDate)
         {
             try
             {
                 string weatherDataJson = await fetchWeatherDataAsync(i_Location, i_EventDate);
                 string weatherHtml = generateWeatherHtml(weatherDataJson, i_EventDate);
-                webBrowser1.DocumentText = weatherHtml;
+                webBrowserWeather.DocumentText = weatherHtml;
             }
             catch (Exception ex)
             {
@@ -141,11 +123,19 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public void displayMapOfArea()
+        private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string cityName = "תל אביב";
-            string url = $"https://www.openstreetmap.org/search?query={Uri.EscapeDataString(cityName)}";
-            webBrowser1.Navigate(url);
+            if (listBoxEvents.SelectedItem is FacebookEventWrapper selectedEvent)
+            {
+                if (!string.IsNullOrEmpty(selectedEvent.Location) && selectedEvent.Date.HasValue)
+                {
+                    displayWeatherForEvent(selectedEvent.Location, selectedEvent.Date.Value);
+                }
+                else
+                {
+                    MessageBox.Show("The selected event is missing information about time and date.");
+                }
+            }
         }
     }
 }

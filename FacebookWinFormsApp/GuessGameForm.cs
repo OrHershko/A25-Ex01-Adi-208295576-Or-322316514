@@ -7,13 +7,13 @@ using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
-    public partial class GuessGameForm : Form
+    public partial class formGuessGame : Form
     {
         private List<Page> m_Pages;
-        private int m_CurrentIndex = 0;
-        private int m_Score = 0;
+        private int m_CurrentIndex;
+        private int m_Score;
 
-        public GuessGameForm(List<Page> i_Pages)
+        public formGuessGame(List<Page> i_Pages)
         {
             InitializeComponent();
             m_Pages = i_Pages;
@@ -27,8 +27,8 @@ namespace BasicFacebookFeatures
         {
             if (m_CurrentIndex < m_Pages.Count)
             {
-                var currentPage = m_Pages[m_CurrentIndex];
-                currentPageLabel.Text = $"Page Name: {currentPage.Name}";
+                Page currentPage = m_Pages[m_CurrentIndex];
+                labelCurrentPage.Text = $"Page Name: {currentPage.Name}";
             }
             else
             {
@@ -40,10 +40,10 @@ namespace BasicFacebookFeatures
 
         private void guessButton_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(guessTextBox.Text, out int userGuess))
+            if (!int.TryParse(textBoxGuess.Text, out int userGuess))
             {
-                resultLabel.Text = "Please enter a valid number.";
-                resultLabel.ForeColor = System.Drawing.Color.Red;
+                LabelResult.Text = "Please enter a valid number.";
+                LabelResult.ForeColor = System.Drawing.Color.Red;
                 return;
             }
 
@@ -55,23 +55,23 @@ namespace BasicFacebookFeatures
             if (difference == 0)
             {
                 m_Score += 10;
-                resultLabel.Text = $"Spot on! The page has exactly {actualLikes} likes!";
-                resultLabel.ForeColor = System.Drawing.Color.Green;
+                LabelResult.Text = $"Spot on! The page has exactly {actualLikes} likes!";
+                LabelResult.ForeColor = System.Drawing.Color.Green;
             }
             else if (difference <= 100)
             {
                 m_Score += 5;
-                resultLabel.Text = $"Close enough! The page has {actualLikes} likes.";
-                resultLabel.ForeColor = System.Drawing.Color.Orange;
+                LabelResult.Text = $"Close enough! The page has {actualLikes} likes.";
+                LabelResult.ForeColor = System.Drawing.Color.Orange;
             }
             else
             {
                 m_Score -= 1;
-                resultLabel.Text = $"Not quite. The page has {actualLikes} likes.";
-                resultLabel.ForeColor = System.Drawing.Color.Red;
+                LabelResult.Text = $"Not quite. The page has {actualLikes} likes.";
+                LabelResult.ForeColor = System.Drawing.Color.Red;
             }
 
-            scoreLabel.Text = $"Score: {m_Score}";
+            LabelScore.Text = $"Score: {m_Score}";
             m_CurrentIndex++;
             displayNextPage();
         }
