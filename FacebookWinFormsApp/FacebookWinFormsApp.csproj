@@ -157,5 +157,11 @@
       <Version>87.1.132</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook-login.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

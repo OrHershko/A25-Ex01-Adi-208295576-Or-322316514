@@ -32,6 +32,7 @@ namespace BasicFacebookFeatures
         {
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pictureBoxFacebookLogo = new System.Windows.Forms.PictureBox();
             this.sortPagesButton = new System.Windows.Forms.Button();
             this.checkWeatherButton = new System.Windows.Forms.Button();
             this.postStatusButton = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@ namespace BasicFacebookFeatures
             this.buttonLogin = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +66,7 @@ namespace BasicFacebookFeatures
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.pictureBoxFacebookLogo);
             this.tabPage1.Controls.Add(this.sortPagesButton);
             this.tabPage1.Controls.Add(this.checkWeatherButton);
             this.tabPage1.Controls.Add(this.postStatusButton);
@@ -88,6 +91,16 @@ namespace BasicFacebookFeatures
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Home Page";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pictureBoxFacebookLogo
+            // 
+            this.pictureBoxFacebookLogo.Image = global::BasicFacebookFeatures.Properties.Resources.facebook_login;
+            this.pictureBoxFacebookLogo.Location = new System.Drawing.Point(18, 3);
+            this.pictureBoxFacebookLogo.Name = "pictureBoxFacebookLogo";
+            this.pictureBoxFacebookLogo.Size = new System.Drawing.Size(235, 87);
+            this.pictureBoxFacebookLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxFacebookLogo.TabIndex = 68;
+            this.pictureBoxFacebookLogo.TabStop = false;
             // 
             // sortPagesButton
             // 
@@ -224,27 +237,25 @@ namespace BasicFacebookFeatures
             // 
             // textBoxAppID
             // 
-            this.textBoxAppID.Location = new System.Drawing.Point(317, 61);
+            this.textBoxAppID.Location = new System.Drawing.Point(588, 52);
             this.textBoxAppID.Name = "textBoxAppID";
             this.textBoxAppID.Size = new System.Drawing.Size(237, 24);
             this.textBoxAppID.TabIndex = 54;
-            this.textBoxAppID.Text = "1450160541956417";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(314, 17);
+            this.label1.Location = new System.Drawing.Point(585, 19);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(559, 36);
+            this.label1.Size = new System.Drawing.Size(55, 18);
             this.label1.TabIndex = 53;
-            this.label1.Text = "This is the AppID of \"Design Patterns App 2.4\". The grader will use it to test yo" +
-    "ur app.\r\nType here your own AppID to test it:";
+            this.label1.Text = "App ID:";
             // 
             // buttonLogout
             // 
             this.buttonLogout.Enabled = false;
-            this.buttonLogout.Location = new System.Drawing.Point(18, 57);
+            this.buttonLogout.Location = new System.Drawing.Point(299, 52);
             this.buttonLogout.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogout.Name = "buttonLogout";
             this.buttonLogout.Size = new System.Drawing.Size(268, 32);
@@ -255,7 +266,7 @@ namespace BasicFacebookFeatures
             // 
             // buttonLogin
             // 
-            this.buttonLogin.Location = new System.Drawing.Point(18, 17);
+            this.buttonLogin.Location = new System.Drawing.Point(299, 12);
             this.buttonLogin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(268, 32);
@@ -288,6 +299,7 @@ namespace BasicFacebookFeatures
             this.Text = "Facebook Winforms App";
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFacebookLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -316,6 +328,7 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.TextBox postTextBox;
         private System.Windows.Forms.Button checkWeatherButton;
         private System.Windows.Forms.Button sortPagesButton;
+        private System.Windows.Forms.PictureBox pictureBoxFacebookLogo;
     }
 }
 
