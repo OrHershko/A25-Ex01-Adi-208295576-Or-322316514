@@ -67,16 +67,19 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                m_LoginResult = FacebookService.Login(
-                    "913632580724598",
-                    "email",
-                    "public_profile",
-                    "user_friends",
-                    "user_likes",
-                    "user_posts",
-                    "user_photos"
-                );
+                //m_LoginResult = FacebookService.Login(
+                //    "913632580724598",
+                //    "email",
+                //    "public_profile",
+                //    "user_friends",
+                //    "user_likes",
+                //    "user_posts",
+                //    "user_photos"
+                //);
 
+
+                m_LoginResult = FacebookService.Connect(
+                    "EAAMZB8alt53YBO1E5yKeGubcsphsGwvOoEcexrfFeAIQ76EjOMknDeFjFPZAbXMeJQmFaWPNpqISSH8eeHvZC6Py4nIeIRKZBC4p0giweH2HK3aAy7odJt3ZBQIKY1ThHpauOZBkT7bKh0hiR7V5ZCDFLuoMvvbZBy5o8KUthuOfT4uZARTTGKTwZCT2DZAvqHMZCr9xgF59ZAikKH5ASyZCliE8szD3PKrGsZC");
 
                 if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
                 {
@@ -236,7 +239,7 @@ namespace BasicFacebookFeatures
         {
             WeatherCheckWindow weatherCheck = new WeatherCheckWindow();
 
-            weatherCheck.setEventsList(m_LoginResult.LoggedInUser.Events);
+            weatherCheck.SetEventsList(m_LoginResult.LoggedInUser.Events);
             weatherCheck.ShowDialog();
         }
 
@@ -245,7 +248,7 @@ namespace BasicFacebookFeatures
             var sortedLikedPages = m_LoginResult.LoggedInUser.LikedPages.OrderBy(page => page.LikesCount).ToList();
             SortedPages sortedPagesWindow = new SortedPages();
 
-            sortedPagesWindow.setSortedPagesListBox(sortedLikedPages);
+            sortedPagesWindow.InitSortedPagesWindow(sortedLikedPages);
             sortedPagesWindow.ShowDialog();
         }
     }

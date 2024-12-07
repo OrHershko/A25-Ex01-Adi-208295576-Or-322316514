@@ -32,6 +32,7 @@ namespace BasicFacebookFeatures
         {
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.sortPagesButton = new System.Windows.Forms.Button();
             this.checkWeatherButton = new System.Windows.Forms.Button();
             this.postStatusButton = new System.Windows.Forms.Button();
             this.postTextBox = new System.Windows.Forms.TextBox();
@@ -49,11 +50,17 @@ namespace BasicFacebookFeatures
             this.buttonLogout = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.sortPagesButton = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(1235, 666);
+            this.tabPage2.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -82,6 +89,17 @@ namespace BasicFacebookFeatures
             this.tabPage1.Text = "Home Page";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // sortPagesButton
+            // 
+            this.sortPagesButton.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sortPagesButton.Location = new System.Drawing.Point(15, 198);
+            this.sortPagesButton.Name = "sortPagesButton";
+            this.sortPagesButton.Size = new System.Drawing.Size(270, 71);
+            this.sortPagesButton.TabIndex = 67;
+            this.sortPagesButton.Text = "Sort Liked Pages By Popularity";
+            this.sortPagesButton.UseVisualStyleBackColor = true;
+            this.sortPagesButton.Click += new System.EventHandler(this.sortedPagesButton_Click);
+            // 
             // checkWeatherButton
             // 
             this.checkWeatherButton.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -89,7 +107,7 @@ namespace BasicFacebookFeatures
             this.checkWeatherButton.Name = "checkWeatherButton";
             this.checkWeatherButton.Size = new System.Drawing.Size(270, 72);
             this.checkWeatherButton.TabIndex = 66;
-            this.checkWeatherButton.Text = "Check Weather Around Upcoming Events ";
+            this.checkWeatherButton.Text = "Check Weather Around Upcoming Events On The Next 5 Days";
             this.checkWeatherButton.UseVisualStyleBackColor = true;
             this.checkWeatherButton.Click += new System.EventHandler(this.checkWeatherButton_Click);
             // 
@@ -256,17 +274,6 @@ namespace BasicFacebookFeatures
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1243, 697);
             this.tabControl1.TabIndex = 54;
-            // 
-            // sortPagesButton
-            // 
-            this.sortPagesButton.Font = new System.Drawing.Font("Aharoni", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sortPagesButton.Location = new System.Drawing.Point(15, 198);
-            this.sortPagesButton.Name = "sortPagesButton";
-            this.sortPagesButton.Size = new System.Drawing.Size(270, 71);
-            this.sortPagesButton.TabIndex = 67;
-            this.sortPagesButton.Text = "Sort Liked Pages By Popularity";
-            this.sortPagesButton.UseVisualStyleBackColor = true;
-            this.sortPagesButton.Click += new System.EventHandler(this.sortedPagesButton_Click);
             // 
             // FormMain
             // 

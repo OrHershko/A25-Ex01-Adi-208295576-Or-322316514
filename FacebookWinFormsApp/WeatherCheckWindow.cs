@@ -17,17 +17,21 @@ namespace BasicFacebookFeatures
             eventsListBox.SelectedIndexChanged += eventsListBox_SelectedIndexChanged;
         }
 
-        public void setEventsList(FacebookObjectCollection<Event> i_FacebookEvents)
+        public void SetEventsList(FacebookObjectCollection<Event> i_FacebookEvents)
         {
             if (i_FacebookEvents == null)
             {
                 //foreach (Event facebookEvent in i_FacebookEvents)
                 //{
-                //    FacebookEventWrapper facebookEventWrapper = new FacebookEventWrapper(
-                //        facebookEvent.Name,
-                //        facebookEvent.StartTime,
-                //        facebookEvent.Location);
-                //    eventsListBox.Items.Add(facebookEventWrapper);
+                //    if(facebookEvent.StartTime.HasValue)
+                //        if(facebookEvent.StartTime.Value.Date < DateTime.Now.AddDays(5))
+                //        {
+                //            FacebookEventWrapper facebookEventWrapper = new FacebookEventWrapper(
+                //                facebookEvent.Name,
+                //                facebookEvent.StartTime,
+                //                facebookEvent.Location);
+                //            eventsListBox.Items.Add(facebookEventWrapper);
+                //        }
                 //}
             }
 
