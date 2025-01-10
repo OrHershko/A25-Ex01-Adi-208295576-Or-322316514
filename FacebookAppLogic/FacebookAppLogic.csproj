@@ -40,9 +40,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GuessGameLogic.cs" />
     <Compile Include="WeatherCheckLogic.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Facebook">
+      <HintPath>..\FBApi\Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="FbGraphApiWrapper">
+      <HintPath>..\FBApi\FbGraphApiWrapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.9.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>

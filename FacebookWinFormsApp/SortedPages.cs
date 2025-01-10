@@ -74,7 +74,7 @@ namespace BasicFacebookFeatures
                 return;
             }
 
-            formGuessGame gameForm = new formGuessGame(m_SortedPages);
+            FormGuessGame gameForm = new FormGuessGame(m_SortedPages);
             gameForm.ShowDialog();
         }
 

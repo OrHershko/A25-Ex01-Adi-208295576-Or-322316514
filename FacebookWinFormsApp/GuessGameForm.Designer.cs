@@ -2,7 +2,7 @@
 
 namespace BasicFacebookFeatures
 {
-    partial class formGuessGame
+    partial class FormGuessGame
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.TextBox textBoxGuess;
@@ -93,7 +93,7 @@ namespace BasicFacebookFeatures
             this.Controls.Add(this.buttonGuess);
             this.Controls.Add(this.LabelResult);
             this.Controls.Add(this.LabelScore);
-            this.Name = "formGuessGame";
+            this.Name = "FormGuessGame";
             this.Text = "Guess the Likes Game";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -78,7 +78,7 @@ namespace BasicFacebookFeatures
                 //);
 
                 m_LoginResult = FacebookService.Connect(
-                    "EAAMZB8alt53YBO1CUa4G0ZAioSdGpFdZAwZBarj6grzLQTnUQbNuJPgJesn7MTENmrXBttzHYRzHDTSUAZAUXuE4KG9ZBeeWvmV1FLWAcruDfC8XcTqmhatTSZCPJMnXSm6Dnv9LO9K3Mgz6VaDTB6ZCCcs4SRAzfWviQ6xCo77LnL5hXDdKXcPrqp404jEHJWDsxeztYdkuTBE6ZBDZArMnwZD");
+                    "EAAMZB8alt53YBO7iI0LDzawQ3h4iLNLQJUcGTw0EyNeKTpkqUXsYsdnxMZAccEHPZBZCLepPYCaC6nZCtZC88okksDFMlJKEuO0gX29g4EZBxjWGtXnFl2KXZCrCcLRvyaGOnzHAZBR0SEX4CzW7DcvjHcS8VbmODaRJ3ZCyYSwRMIj0ZC5tdEhTe2d6uNsSjZCeljHQeYHbRJQh1lmrnsFFbBkzLLLHLnoVAdfETiFWwQZDZD");
 
                 if (string.IsNullOrEmpty(m_LoginResult.ErrorMessage))
                 {
