@@ -14,6 +14,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -162,6 +163,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\facebook-login.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FacebookAppLogic\FacebookAppLogic.csproj">
+      <Project>{99e3ff9a-a425-48dc-b1c9-ae5166d10735}</Project>
+      <Name>FacebookAppLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
