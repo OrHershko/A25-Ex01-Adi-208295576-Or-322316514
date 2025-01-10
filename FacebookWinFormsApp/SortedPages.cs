@@ -12,39 +12,39 @@ using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
-    public partial class formSortedPages : Form
+    public partial class FormSortedPages : Form
     {
         private List<Page> m_SortedPages;
 
-        public formSortedPages()
+        public FormSortedPages()
         {
             InitializeComponent();
             listBoxSortedPages.DrawItem += FormMain.ListBox_DrawItem;
         }
 
 
-        public void InitSortedPagesWindow(List<Page> i_SortedLikedPages)
+        public void InitSortedPagesWindow()
         {
-            m_SortedPages = i_SortedLikedPages;
+            m_SortedPages = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.LikedPages.OrderBy(page => page.LikesCount).ToList();
             listBoxSortedPages.Items.Clear();
 
-            foreach (var page in i_SortedLikedPages)
+            foreach (var page in m_SortedPages)
             {
                 listBoxSortedPages.Items.Add(new ListBoxItem(page.Name, page.PictureSmallURL));
             }
 
-            int totalPages = i_SortedLikedPages.Count;
-            string mostLikedPage = i_SortedLikedPages.OrderByDescending(p => p.LikesCount).FirstOrDefault()?.Name ?? "None";
-            double averageLikes = i_SortedLikedPages.Average(p => p.LikesCount).HasValue ? i_SortedLikedPages.Average(p => p.LikesCount).Value : 0;
+            int totalPages = m_SortedPages.Count;
+            string mostLikedPage = m_SortedPages.OrderByDescending(p => p.LikesCount).FirstOrDefault()?.Name ?? "None";
+            double averageLikes = m_SortedPages.Average(p => p.LikesCount).HasValue ? m_SortedPages.Average(p => p.LikesCount).Value : 0;
 
             labelTotalPages.Text = $"Total Pages: {totalPages}";
             labelmosLLikedPage.Text = $"Most Liked Page: {mostLikedPage}";
             labelAverageLikes.Text = $"Average Likes: {averageLikes:F2}";
 
-            updateLikesChart(i_SortedLikedPages);
+            updateLikesChart();
         }
 
-        private void updateLikesChart(List<Page> i_SortedLikedPages)
+        private void updateLikesChart()
         {
             chartLikes.Series.Clear();
             chartLikes.ChartAreas.Clear();
@@ -58,7 +58,7 @@ namespace BasicFacebookFeatures
                                  ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Bar
                              };
 
-            foreach (var page in i_SortedLikedPages)
+            foreach (var page in m_SortedPages)
             {
                 series.Points.AddXY(page.Name, page.LikesCount);
             }

@@ -7,32 +7,32 @@ namespace FacebookAppLogic
 {
     public class GuessGameLogic
     {
-        private readonly List<Page> m_Pages;
+        private readonly List<Page> r_Pages;
         private int m_CurrentIndex;
         public int Score { get; private set; }
 
 
         public GuessGameLogic(List<Page> i_Pages)
         {
-            m_Pages = i_Pages;
+            r_Pages = i_Pages;
             m_CurrentIndex = 0;
             Score = 0;
         }
 
         public bool IsThereMorePages()
         {
-            return m_CurrentIndex < m_Pages.Count;
+            return m_CurrentIndex < r_Pages.Count;
         }
 
         public Page GetCurrentPage()
         {
-            return m_Pages[m_CurrentIndex];
+            return r_Pages[m_CurrentIndex];
         }
 
         public eAnswerStatus CheckPlayerGuess(int i_UserGuess)
 
         {
-            long actualLikes = m_Pages[m_CurrentIndex].LikesCount ?? 0;
+            long actualLikes = r_Pages[m_CurrentIndex].LikesCount ?? 0;
 
             int difference = Math.Abs(i_UserGuess - (int)actualLikes);
 

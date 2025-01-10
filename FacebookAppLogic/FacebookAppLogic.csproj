@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GuessGameLogic.cs" />
+    <Compile Include="WeatherCheckBuilder.cs" />
+    <Compile Include="WeatherCheckComposer.cs" />
     <Compile Include="WeatherCheckLogic.cs" />
   </ItemGroup>
   <ItemGroup>

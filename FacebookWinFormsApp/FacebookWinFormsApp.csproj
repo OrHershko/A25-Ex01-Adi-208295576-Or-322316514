@@ -81,7 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FacebookEventWrapper.cs" />
+    <Compile Include="EventProxy.cs" />
     <Compile Include="FeedItemControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -101,8 +101,10 @@
       <DependentUpon>GuessGameForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ListBoxItem.cs" />
+    <Compile Include="LoggedInUserSingleton.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Singleton.cs" />
     <Compile Include="SortedPages.cs">
       <SubType>Form</SubType>
     </Compile>

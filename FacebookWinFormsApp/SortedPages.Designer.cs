@@ -1,6 +1,6 @@
 ﻿namespace BasicFacebookFeatures
 {
-    partial class formSortedPages
+    partial class FormSortedPages
     {
         /// <summary>
         /// Required designer variable.
@@ -114,7 +114,7 @@
             this.Controls.Add(this.labelTotalPages);
             this.Controls.Add(this.labelLikedPagesSorted);
             this.Controls.Add(this.listBoxSortedPages);
-            this.Name = "formSortedPages";
+            this.Name = "FormSortedPages";
             this.Text = "Sorted Pages";
             ((System.ComponentModel.ISupportInitialize)(this.chartLikes)).EndInit();
             this.ResumeLayout(false);

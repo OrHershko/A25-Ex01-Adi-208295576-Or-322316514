@@ -13,48 +13,46 @@ namespace BasicFacebookFeatures
             InitializeComponent();
         }
 
-        public void SetEventsList(FacebookObjectCollection<Event> i_FacebookEvents)
+        public void SetEventsList()
         {
-            if (i_FacebookEvents == null)
+            FacebookObjectCollection<Event> facebookEvents = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Events;
+
+            if (facebookEvents == null)
             {
-                foreach (Event facebookEvent in i_FacebookEvents)
+                foreach (Event facebookEvent in facebookEvents)
                 {
                     if (facebookEvent.StartTime.HasValue)
                         if (facebookEvent.StartTime.Value.Date < DateTime.Now.AddDays(5) && facebookEvent.StartTime.Value.Date > DateTime.Now)
                         {
-                            FacebookEventWrapper facebookEventWrapper = new FacebookEventWrapper(
-                                facebookEvent.Name,
-                                facebookEvent.StartTime,
-                                facebookEvent.Location);
-                            listBoxEvents.Items.Add(facebookEventWrapper);
+                            EventProxy eventProxy = new EventProxy(facebookEvent);
+                            listBoxEvents.Items.Add(eventProxy);
                         }
                 }
             }
-
-            //listBoxEvents.Items.Add(new FacebookEventWrapper("avi", DateTime.Now, "תל אביב") );
         }
 
         private async void displayWeatherForEvent(string i_Location, DateTime i_EventDate)
         {
             try
             {
-                string weatherDataJson = await m_WeatherCheckLogic.FetchWeatherDataAsync(i_Location);
-                string weatherHtml = m_WeatherCheckLogic.GenerateWeatherHtml(weatherDataJson, i_EventDate);
-                webBrowserWeather.DocumentText = weatherHtml;
+                WeatherReportComposer composer = new WeatherReportComposer();
+                string weatherReportHtml = await composer.CreateWeatherReportAsync(i_Location, i_EventDate);
+                webBrowserWeather.DocumentText = weatherReportHtml;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show($"Failed to fetch weather report: {ex.Message}");
             }
         }
 
+
         private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxEvents.SelectedItem is FacebookEventWrapper selectedEvent)
+            if (listBoxEvents.SelectedItem is EventProxy selectedEvent)
             {
-                if (!string.IsNullOrEmpty(selectedEvent.Location) && selectedEvent.Date.HasValue)
+                if (!string.IsNullOrEmpty(selectedEvent.Event.Location) && selectedEvent.Event.StartTime.HasValue)
                 {
-                    displayWeatherForEvent(selectedEvent.Location, selectedEvent.Date.Value);
+                    displayWeatherForEvent(selectedEvent.Event.Location, selectedEvent.Event.StartTime.Value);
                 }
                 else
                 {
