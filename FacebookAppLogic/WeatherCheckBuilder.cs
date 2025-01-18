@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace FacebookAppLogic
 {
     public class WeatherReportBuilder
     {
         private string m_Date;
         private string m_City;
-        private double m_Temperature;
-        private double m_Humidity;
-        private double m_Precipitation;
+        private double? m_Temperature; 
+        private double? m_Humidity;  
+        private double? m_Precipitation;
 
         public WeatherReportBuilder SetDate(string i_Date)
         {
@@ -60,19 +55,17 @@ namespace FacebookAppLogic
     </style>
 </head>
 <body>
-    <h1>Weather Report for {m_City}</h1>
+    {(string.IsNullOrEmpty(m_City) ? "" : $"<h1>Weather Report for {m_City}</h1>")}
     <div class='weather-container'>
-        <h2>Date: {m_Date}</h2>
-        <p><strong>Average Temperature:</strong> {m_Temperature} °C</p>
-        <p><strong>Average Humidity:</strong> {m_Humidity} %</p>
-        <p><strong>Precipitation Probability:</strong> {m_Precipitation} %</p>
+        {(string.IsNullOrEmpty(m_Date) ? "" : $"<h2>Date: {m_Date}</h2>")}
+        {(m_Temperature.HasValue ? $"<p><strong>Average Temperature:</strong> {m_Temperature.Value} °C</p>" : "")}
+        {(m_Humidity.HasValue ? $"<p><strong>Average Humidity:</strong> {m_Humidity.Value} %</p>" : "")}
+        {(m_Precipitation.HasValue ? $"<p><strong>Precipitation Probability:</strong> {m_Precipitation.Value} %</p>" : "")}
     </div>
 </body>
 </html>";
 
             return htmlTemplate;
         }
-
     }
-
 }

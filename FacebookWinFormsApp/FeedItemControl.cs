@@ -8,25 +8,29 @@ namespace BasicFacebookFeatures
 {
     public partial class FeedItemControl : UserControl
     {
-        public FeedItemControl()
+        public Post Post { get; set; }
+
+        public FeedItemControl(Post i_Post)
         {
             InitializeComponent();
+            Post = i_Post;
+            SetPostData();
         }
 
-        public void SetPostData(Post i_Post)
+        private void SetPostData()
         {
-            descriptionLabel.Text = i_Post.Description;
-            linkLabel.Text = i_Post.Link;
-            datePostedLabel.Text = i_Post.CreatedTime.ToString();
-            PublisherNameLabel.Text = i_Post.From.Name;
-            publisherPictureBox.ImageLocation = i_Post.From.PictureSmallURL;
+            descriptionLabel.Text = Post.Description;
+            linkLabel.Text = Post.Link;
+            datePostedLabel.Text = Post.CreatedTime.ToString();
+            PublisherNameLabel.Text = Post.From.Name;
+            publisherPictureBox.ImageLocation = Post.From.PictureSmallURL;
 
-            if (!string.IsNullOrEmpty(i_Post.PictureURL))
+            if (!string.IsNullOrEmpty(Post.PictureURL))
             {
                 string htmlImage = $@"
                 <html>
                     <body style='margin:0; padding:0;'>
-                        <img src='{i_Post.PictureURL}' style='width:100%; height:100%; object-fit:cover;' />
+                        <img src='{Post.PictureURL}' style='width:100%; height:100%; object-fit:cover;' />
                     </body>
                 </html>";
                 webBrowser.DocumentText = htmlImage;

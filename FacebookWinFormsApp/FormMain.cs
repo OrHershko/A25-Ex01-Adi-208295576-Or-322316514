@@ -77,7 +77,7 @@ namespace BasicFacebookFeatures
                 //);
                 
                 LoggedInUserSingleton.Instance.LoginResult = FacebookService.Connect(
-                    "EAAMZB8alt53YBO7iI0LDzawQ3h4iLNLQJUcGTw0EyNeKTpkqUXsYsdnxMZAccEHPZBZCLepPYCaC6nZCtZC88okksDFMlJKEuO0gX29g4EZBxjWGtXnFl2KXZCrCcLRvyaGOnzHAZBR0SEX4CzW7DcvjHcS8VbmODaRJ3ZCyYSwRMIj0ZC5tdEhTe2d6uNsSjZCeljHQeYHbRJQh1lmrnsFFbBkzLLLHLnoVAdfETiFWwQZDZD");
+                    "EAAMZB8alt53YBOZCIXWJoZBDPAZCK89PrZB9vIyVtz2GW4ccnhaJnsRPXmL7SGXjv91csAoMsHtvQijUdJNpSxURPCOE9pf0Saw3N5ztySJwnniFCeptTRO6fdZAfCPHIvxtCU7j6k9D1xSs8Rvs1ZCBhxo15Wrx2bRderAD340Ou1y5Lz3TSN6K6sIlYm4QCnIvHcy3D4wy2yHZCDB7fHWfCCVUNQJXdkwbzhEfcAZDZD");
 
 
                 if (string.IsNullOrEmpty(LoggedInUserSingleton.Instance.LoginResult.ErrorMessage))
@@ -184,9 +184,7 @@ namespace BasicFacebookFeatures
                 {
                     if (!string.IsNullOrEmpty(post.Description))
                     {
-                        FeedItemControl feedItemControl = new FeedItemControl();
-
-                        feedItemControl.SetPostData(post);
+                        FeedItemControl feedItemControl = new FeedItemControl(post);
                         flowLayoutPanelFeed.Controls.Add(feedItemControl);
                     }
                 }
