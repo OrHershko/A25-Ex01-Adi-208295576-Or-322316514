@@ -1,36 +1,40 @@
 ﻿using System.ComponentModel;
 using FacebookWrapper.ObjectModel;
 
-public class PostProxy : INotifyPropertyChanged
+namespace BasicFacebookFeatures
 {
-    private readonly Post m_Post;
-    private string m_Description;
-
-    public PostProxy(Post i_Post)
+    public class PostProxy : INotifyPropertyChanged
     {
-        m_Post = i_Post;
-        m_Description = m_Post.Description;
-    }
+        private readonly Post r_Post;
+        private string m_Description;
 
-    public string Description
-    {
-        get => m_Description;
-        set
+        public PostProxy(Post i_Post)
         {
-            if (m_Description != value)
+            r_Post = i_Post;
+            m_Description = r_Post.Description;
+        }
+
+        public string Description
+        {
+            get => m_Description;
+            set
             {
-                m_Description = value; 
-                OnPropertyChanged(nameof(Description));
+                if(m_Description != value)
+                {
+                    m_Description = value;
+                    OnPropertyChanged(nameof(Description));
+                }
             }
+        }
+
+        public Post WrappedPost => r_Post;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string i_PropertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(i_PropertyName));
         }
     }
 
-    public Post WrappedPost => m_Post;
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    protected virtual void OnPropertyChanged(string i_PropertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(i_PropertyName));
-    }
 }

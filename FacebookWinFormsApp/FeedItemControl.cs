@@ -8,14 +8,14 @@ namespace BasicFacebookFeatures
     public partial class FeedItemControl : UserControl
     {
         private readonly BindingSource r_BindingSource;
-        private TextBox m_TextBoxEditDescription;
+        private readonly TextBox r_TextBoxEditDescription;
 
         public FeedItemControl(PostProxy i_PostProxy)
         {
             InitializeComponent();
             r_BindingSource = new BindingSource();
             r_BindingSource.DataSource = i_PostProxy;
-            m_TextBoxEditDescription = new TextBox
+            r_TextBoxEditDescription = new TextBox
                                          {
                                              Multiline = true,
                                              Visible = false,
@@ -24,14 +24,14 @@ namespace BasicFacebookFeatures
                                              Location = descriptionLabel.Location,
                                              ScrollBars = ScrollBars.Vertical
             };
-            descriptionLabel.Parent.Controls.Add(m_TextBoxEditDescription);
+            descriptionLabel.Parent.Controls.Add(r_TextBoxEditDescription);
 
-            m_TextBoxEditDescription.KeyDown += (sender, e) =>
+            r_TextBoxEditDescription.KeyDown += (sender, e) =>
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
                         r_BindingSource.EndEdit();
-                        m_TextBoxEditDescription.Visible = false;
+                        r_TextBoxEditDescription.Visible = false;
                         descriptionLabel.Visible = true;
                         e.SuppressKeyPress = true;
                     }
@@ -44,8 +44,8 @@ namespace BasicFacebookFeatures
         {
             descriptionLabel.DataBindings.Clear();
             descriptionLabel.DataBindings.Add("Text", r_BindingSource, "Description", true, DataSourceUpdateMode.OnPropertyChanged);
-            m_TextBoxEditDescription.DataBindings.Clear();
-            m_TextBoxEditDescription.DataBindings.Add("Text", r_BindingSource, "Description", true, DataSourceUpdateMode.OnPropertyChanged);
+            r_TextBoxEditDescription.DataBindings.Clear();
+            r_TextBoxEditDescription.DataBindings.Add("Text", r_BindingSource, "Description", true, DataSourceUpdateMode.OnPropertyChanged);
             datePostedLabel.Text = i_PostProxy.WrappedPost.CreatedTime.ToString();
             PublisherNameLabel.Text = i_PostProxy.WrappedPost.From.Name;
             publisherPictureBox.ImageLocation = i_PostProxy.WrappedPost.From.PictureSmallURL;
@@ -113,8 +113,8 @@ namespace BasicFacebookFeatures
         private void descriptionLabel_DoubleClick_1(object sender, EventArgs e)
         {
             descriptionLabel.Visible = false;
-            m_TextBoxEditDescription.Visible = true;
-            m_TextBoxEditDescription.Focus();
+            r_TextBoxEditDescription.Visible = true;
+            r_TextBoxEditDescription.Focus();
         }
     }
 }
