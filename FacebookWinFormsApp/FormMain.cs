@@ -3,9 +3,8 @@ using FacebookWrapper.ObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Linq;
+using System.Threading;
 
 
 namespace BasicFacebookFeatures
@@ -18,7 +17,6 @@ namespace BasicFacebookFeatures
             FacebookWrapper.FacebookService.s_CollectionLimit = 25;
             hideComponents();
         }
-
 
         private void hideComponents()
         {
@@ -52,17 +50,17 @@ namespace BasicFacebookFeatures
             buttonPostStatus.Show();
         }
 
-        private async void buttonLogin_Click(object sender, EventArgs e)
+        private void buttonLogin_Click(object sender, EventArgs e)
         {
             Clipboard.SetText("design.patterns");
 
             if (LoggedInUserSingleton.Instance.LoginResult == null)
             {
-                await loginAsync();
+                new Thread(loginAsync).Start();
             }
         }
 
-        private async Task loginAsync()
+        private void loginAsync()
         {
             try
             {
@@ -79,23 +77,13 @@ namespace BasicFacebookFeatures
                 LoggedInUserSingleton.Instance.LoginResult = FacebookService.Connect(
                     "EAAMZB8alt53YBOZCIXWJoZBDPAZCK89PrZB9vIyVtz2GW4ccnhaJnsRPXmL7SGXjv91csAoMsHtvQijUdJNpSxURPCOE9pf0Saw3N5ztySJwnniFCeptTRO6fdZAfCPHIvxtCU7j6k9D1xSs8Rvs1ZCBhxo15Wrx2bRderAD340Ou1y5Lz3TSN6K6sIlYm4QCnIvHcy3D4wy2yHZCDB7fHWfCCVUNQJXdkwbzhEfcAZDZD");
 
-
                 if (string.IsNullOrEmpty(LoggedInUserSingleton.Instance.LoginResult.ErrorMessage))
                 {
-                    buttonLogin.Text = $"Logged in as {LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Name}";
-                    usernameLabel.Text = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Name;
-                    buttonLogin.BackColor = Color.LightGreen;
-                    pictureBoxProfile.ImageLocation = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.PictureNormalURL;
-                    buttonLogin.Enabled = false;
-                    buttonLogout.Enabled = true;
-                    listBoxFriends.DrawItem += ListBox_DrawItem;
-                    listBoxAlbums.DrawItem += ListBox_DrawItem;
-                    listBoxLikedPages.DrawItem += ListBox_DrawItem;
-                    showComponents();
-                    loadNewsFeedAsync();
-                    await loadFriendsAsync();
-                    await loadAlbumsAsync();
-                    await loadPagesAsync();
+                    this.Invoke(new Action(updateUiAfterLogin));
+                    new Thread(loadNewsFeedAsync).Start();
+                    new Thread(loadFriendsAsync).Start();
+                    new Thread(loadAlbumsAsync).Start();
+                    new Thread(loadPagesAsync).Start();
                 }
                 else
                 {
@@ -107,6 +95,21 @@ namespace BasicFacebookFeatures
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
+
+        private void updateUiAfterLogin()
+        {
+            buttonLogin.Text = $"Logged in as {LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Name}";
+            buttonLogin.BackColor = Color.LightGreen;
+            buttonLogin.Enabled = false;
+            usernameLabel.Text = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Name;
+            pictureBoxProfile.ImageLocation = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.PictureNormalURL;
+            buttonLogout.Enabled = true;
+            listBoxFriends.DrawItem += ListBox_DrawItem;
+            listBoxAlbums.DrawItem += ListBox_DrawItem;
+            listBoxLikedPages.DrawItem += ListBox_DrawItem;
+            showComponents();
+        }
+
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
@@ -120,20 +123,21 @@ namespace BasicFacebookFeatures
             buttonLogout.Enabled = false;
         }
 
-        private async Task loadFriendsAsync()
+        private void loadFriendsAsync()
         {
-            await populateListBoxAsync(
+            populateListBoxAsync(
                 listBoxFriends,
                 LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Friends,
                 (i_ListBox, i_Friend) =>
                     {
                         i_ListBox.Items.Add(new ListBoxItem(i_Friend.Name, i_Friend.PictureSmallURL));
                     });
+
         }
 
-        private async Task loadAlbumsAsync()
+        private void loadAlbumsAsync()
         {
-            await populateListBoxAsync(
+            populateListBoxAsync(
                 listBoxAlbums,
                 LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Albums,
                 (i_ListBox, i_Album) =>
@@ -142,9 +146,9 @@ namespace BasicFacebookFeatures
                     });
         }
 
-        private async Task loadPagesAsync()
+        private void loadPagesAsync()
         {
-            await populateListBoxAsync(
+            populateListBoxAsync(
                 listBoxLikedPages,
                 LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.LikedPages,
                 (i_ListBox, i_Page) =>
@@ -154,18 +158,15 @@ namespace BasicFacebookFeatures
         }
 
 
-        private async Task populateListBoxAsync<T>(ListBox i_ListBox, IEnumerable<T> i_Items, Action<ListBox, T> i_AddAction)
+        private void populateListBoxAsync<T>(ListBox i_ListBox, IEnumerable<T> i_Items, Action<ListBox, T> i_AddAction)
         {
-            await Task.Run(() =>
-                {
-                    foreach (var item in i_Items)
-                    {
-                        i_ListBox.Invoke((Action)(() =>
-                                                       {
-                                                           i_AddAction(i_ListBox, item); 
-                                                       }));
-                    }
-                });
+            foreach (var item in i_Items)
+            {
+                i_ListBox.Invoke(new Action(() =>
+                                                 {
+                                                     i_AddAction(i_ListBox, item);
+                                                 }));
+            }
         }
 
         private void loadNewsFeedAsync()
@@ -179,14 +180,18 @@ namespace BasicFacebookFeatures
                 }
 
                 IEnumerable<Post> posts = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Posts;
-                flowLayoutPanelFeed.Controls.Clear();
+                flowLayoutPanelFeed.Invoke(new Action(() => flowLayoutPanelFeed.Controls.Clear()));
                 foreach (var post in posts)
                 {
-                    if (!string.IsNullOrEmpty(post.Description))
-                    {
-                        FeedItemControl feedItemControl = new FeedItemControl(new PostProxy(post));
-                        flowLayoutPanelFeed.Controls.Add(feedItemControl);
-                    }
+                    flowLayoutPanelFeed.Invoke(new Action(() =>
+                        {
+                            if (!string.IsNullOrEmpty(post.Description))
+                            {
+                                FeedItemControl feedItemControl = new FeedItemControl(new PostProxy(post));
+                                flowLayoutPanelFeed.Controls.Add(feedItemControl);
+                            }
+                        }));
+
                 }
             }
             catch (Exception ex)
@@ -218,7 +223,6 @@ namespace BasicFacebookFeatures
 
             e.DrawFocusRectangle(); 
         }
-
 
         private void postStatusButton_Click(object sender, EventArgs e)
         {
