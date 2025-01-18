@@ -184,7 +184,7 @@ namespace BasicFacebookFeatures
                 {
                     if (!string.IsNullOrEmpty(post.Description))
                     {
-                        FeedItemControl feedItemControl = new FeedItemControl(post);
+                        FeedItemControl feedItemControl = new FeedItemControl(new PostProxy(post));
                         flowLayoutPanelFeed.Controls.Add(feedItemControl);
                     }
                 }
@@ -247,6 +247,5 @@ namespace BasicFacebookFeatures
             sortedPagesWindow.InitSortedPagesWindow();
             sortedPagesWindow.ShowDialog();
         }
-
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace BasicFacebookFeatures
+﻿using System.Windows.Forms;
+
+namespace BasicFacebookFeatures
 {
     partial class FeedItemControl
     {
@@ -29,8 +31,8 @@
         private void InitializeComponent()
         {
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.descriptionLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.descriptionLabel = new System.Windows.Forms.Label();
             this.linkLabel = new System.Windows.Forms.LinkLabel();
             this.datePostedLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -44,13 +46,38 @@
             // webBrowser
             // 
             this.webBrowser.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.webBrowser.Location = new System.Drawing.Point(23, 251);
+            this.webBrowser.Location = new System.Drawing.Point(23, 221);
             this.webBrowser.MaximumSize = new System.Drawing.Size(429, 250);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScrollBarsEnabled = false;
             this.webBrowser.Size = new System.Drawing.Size(383, 250);
             this.webBrowser.TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.descriptionLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.linkLabel, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.datePostedLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.webBrowser, 0, 4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 6);
+            this.tableLayoutPanel1.MaximumSize = new System.Drawing.Size(429, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(20);
+            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(429, 494);
+            this.tableLayoutPanel1.TabIndex = 5;
             // 
             // descriptionLabel
             // 
@@ -66,29 +93,7 @@
             this.descriptionLabel.TabIndex = 2;
             this.descriptionLabel.Text = "Description";
             this.descriptionLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.webBrowser, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.descriptionLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.linkLabel, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.datePostedLabel, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 15);
-            this.tableLayoutPanel1.MaximumSize = new System.Drawing.Size(429, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(20);
-            this.tableLayoutPanel1.RowCount = 5;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(429, 554);
-            this.tableLayoutPanel1.TabIndex = 5;
+            this.descriptionLabel.DoubleClick += new System.EventHandler(this.descriptionLabel_DoubleClick_1);
             // 
             // linkLabel
             // 
@@ -158,7 +163,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FeedItemControl";
-            this.Size = new System.Drawing.Size(435, 572);
+            this.Size = new System.Drawing.Size(434, 503);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -171,13 +176,14 @@
 
         #endregion
 
+
         private System.Windows.Forms.WebBrowser webBrowser;
-        private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label datePostedLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.PictureBox publisherPictureBox;
         private System.Windows.Forms.Label PublisherNameLabel;
         private System.Windows.Forms.LinkLabel linkLabel;
+        private System.Windows.Forms.Label descriptionLabel;
     }
 }

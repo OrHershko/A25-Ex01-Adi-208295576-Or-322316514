@@ -1,5 +1,4 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -8,39 +7,65 @@ namespace BasicFacebookFeatures
 {
     public partial class FeedItemControl : UserControl
     {
-        public Post Post { get; set; }
+        private readonly BindingSource r_BindingSource;
+        private TextBox m_TextBoxEditDescription;
 
-        public FeedItemControl(Post i_Post)
+        public FeedItemControl(PostProxy i_PostProxy)
         {
             InitializeComponent();
-            Post = i_Post;
-            SetPostData();
+            r_BindingSource = new BindingSource();
+            r_BindingSource.DataSource = i_PostProxy;
+            m_TextBoxEditDescription = new TextBox
+                                         {
+                                             Multiline = true,
+                                             Visible = false,
+                                             Width = descriptionLabel.Width,
+                                             Height = 100,
+                                             Location = descriptionLabel.Location,
+                                             ScrollBars = ScrollBars.Vertical
+            };
+            descriptionLabel.Parent.Controls.Add(m_TextBoxEditDescription);
+
+            m_TextBoxEditDescription.KeyDown += (sender, e) =>
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        r_BindingSource.EndEdit();
+                        m_TextBoxEditDescription.Visible = false;
+                        descriptionLabel.Visible = true;
+                        e.SuppressKeyPress = true;
+                    }
+                };
+            setPostData(i_PostProxy);
         }
 
-        private void SetPostData()
-        {
-            descriptionLabel.Text = Post.Description;
-            linkLabel.Text = Post.Link;
-            datePostedLabel.Text = Post.CreatedTime.ToString();
-            PublisherNameLabel.Text = Post.From.Name;
-            publisherPictureBox.ImageLocation = Post.From.PictureSmallURL;
 
-            if (!string.IsNullOrEmpty(Post.PictureURL))
+        private void setPostData(PostProxy i_PostProxy)
+        {
+            descriptionLabel.DataBindings.Clear();
+            descriptionLabel.DataBindings.Add("Text", r_BindingSource, "Description", true, DataSourceUpdateMode.OnPropertyChanged);
+            m_TextBoxEditDescription.DataBindings.Clear();
+            m_TextBoxEditDescription.DataBindings.Add("Text", r_BindingSource, "Description", true, DataSourceUpdateMode.OnPropertyChanged);
+            datePostedLabel.Text = i_PostProxy.WrappedPost.CreatedTime.ToString();
+            PublisherNameLabel.Text = i_PostProxy.WrappedPost.From.Name;
+            publisherPictureBox.ImageLocation = i_PostProxy.WrappedPost.From.PictureSmallURL;
+
+            if (!string.IsNullOrEmpty(i_PostProxy.WrappedPost.PictureURL))
             {
                 string htmlImage = $@"
-                <html>
-                    <body style='margin:0; padding:0;'>
-                        <img src='{Post.PictureURL}' style='width:100%; height:100%; object-fit:cover;' />
-                    </body>
-                </html>";
+        <html>
+            <body style='margin:0; padding:0;'>
+                <img src='{i_PostProxy.WrappedPost.PictureURL}' style='width:100%; height:100%; object-fit:cover;' />
+            </body>
+        </html>";
                 webBrowser.DocumentText = htmlImage;
             }
             else
             {
-
                 webBrowser.DocumentText = "<html><body>No media available</body></html>";
             }
         }
+
 
         public Color BackgroundColor { get; set; } = Color.WhiteSmoke; 
         public int CornerRadius { get; set; } = 20; 
@@ -83,6 +108,13 @@ namespace BasicFacebookFeatures
             });
 
             linkLabel.LinkVisited = true;
+        }
+
+        private void descriptionLabel_DoubleClick_1(object sender, EventArgs e)
+        {
+            descriptionLabel.Visible = false;
+            m_TextBoxEditDescription.Visible = true;
+            m_TextBoxEditDescription.Focus();
         }
     }
 }
