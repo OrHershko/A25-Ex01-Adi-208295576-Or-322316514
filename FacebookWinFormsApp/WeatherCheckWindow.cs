@@ -7,7 +7,6 @@ namespace BasicFacebookFeatures
 {
     public partial class FormWeatherCheck : Form
     {
-        private readonly WeatherCheckLogic m_WeatherCheckLogic = new WeatherCheckLogic();
         public FormWeatherCheck()
         {
             InitializeComponent();
