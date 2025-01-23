@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -9,26 +7,19 @@ namespace FacebookAppLogic
 {
     public class WeatherReportComposer
     {
-        private readonly WeatherCheckLogic m_WeatherCheckLogic;
-
-        public WeatherReportComposer()
-        {
-            m_WeatherCheckLogic = new WeatherCheckLogic();
-        }
+        private readonly WeatherCheckLogic r_WeatherCheckLogic = new WeatherCheckLogic();
 
         public async Task<string> CreateWeatherReportAsync(string i_Location, DateTime i_Date)
         {
-            string weatherDataJson = await m_WeatherCheckLogic.FetchWeatherDataAsync(i_Location);
-
+            string weatherDataJson = await r_WeatherCheckLogic.FetchWeatherDataAsync(i_Location);
             JsonDocument document = JsonDocument.Parse(weatherDataJson);
             JsonElement root = document.RootElement;
             string cityName = root.GetProperty("location").GetProperty("name").GetString();
-
             JsonElement dailyData = root.GetProperty("timelines").GetProperty("daily");
             JsonElement? dayElement = dailyData.EnumerateArray().FirstOrDefault(
-                d => DateTime.Parse(d.GetProperty("time").GetString()).Date == i_Date.Date);
+                i_JsonElement => DateTime.Parse(i_JsonElement.GetProperty("time").GetString()).Date == i_Date.Date);
 
-            if (dayElement.HasValue)
+            if (dayElement.Value.ValueKind != JsonValueKind.Undefined)
             {
                 JsonElement dayData = dayElement.Value;
                 string date = DateTime.Parse(dayData.GetProperty("time").GetString()).ToShortDateString();
@@ -51,5 +42,4 @@ namespace FacebookAppLogic
             }
         }
     }
-
 }

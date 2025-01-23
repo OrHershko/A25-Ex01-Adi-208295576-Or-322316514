@@ -9,25 +9,25 @@ namespace BasicFacebookFeatures
 {
     public partial class FormGuessGame : Form
     {
-        private GuessGameLogic m_GuessGameLogic;
+        private readonly GuessGameLogic r_GuessGameLogic;
 
         public FormGuessGame(List<Page> i_Pages)
         {
             InitializeComponent();
-            m_GuessGameLogic = new GuessGameLogic(i_Pages);
+            r_GuessGameLogic = new GuessGameLogic(i_Pages);
             displayNextPage();
         }
 
         private void displayNextPage()
         {
-            if(m_GuessGameLogic.IsThereMorePages())
+            if(r_GuessGameLogic.IsThereMorePages())
             {
-                labelCurrentPage.Text = $"Page Name: {m_GuessGameLogic.GetCurrentPage().Name}";
+                labelCurrentPage.Text = $"Page Name: {r_GuessGameLogic.GetCurrentPage().Name}";
             }
             else
             {
                 MessageBox.Show(
-                    $"Game Over! Your final score: {m_GuessGameLogic.Score}",
+                    $"Game Over! Your final score: {r_GuessGameLogic.Score}",
                     "Game Over",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -44,28 +44,28 @@ namespace BasicFacebookFeatures
                 return;
             }
 
-            long actualLikes = m_GuessGameLogic.GetCurrentPage().LikesCount ?? 0;
-            eAnswerStatus answerStatus = m_GuessGameLogic.CheckPlayerGuess(userGuess);
+            long actualLikes = r_GuessGameLogic.GetCurrentPage().LikesCount ?? 0;
+            eAnswerStatus answerStatus = r_GuessGameLogic.CheckPlayerGuess(userGuess);
 
             switch(answerStatus)
             {
-                case eAnswerStatus.CORRECT:
+                case eAnswerStatus.Correct:
                     LabelResult.Text = $"Spot on! The page has exactly {actualLikes} likes!";
                     LabelResult.ForeColor = System.Drawing.Color.Green;
                     break;
 
-                case eAnswerStatus.ALMOST:
+                case eAnswerStatus.Almost:
                     LabelResult.Text = $"Close enough! The page has {actualLikes} likes.";
                     LabelResult.ForeColor = System.Drawing.Color.Orange;
                     break;
 
-                case eAnswerStatus.WRONG:
+                case eAnswerStatus.Wrong:
                     LabelResult.Text = $"Not quite. The page has {actualLikes} likes.";
                     LabelResult.ForeColor = System.Drawing.Color.Red;
                     break;
             }
 
-            LabelScore.Text = $"Score: {m_GuessGameLogic.Score}";
+            LabelScore.Text = $"Score: {r_GuessGameLogic.Score}";
             displayNextPage();
         }
     }

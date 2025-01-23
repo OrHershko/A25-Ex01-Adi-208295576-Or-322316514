@@ -10,7 +10,7 @@ namespace BasicFacebookFeatures
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        private static void Main()
+        public static void Main()
         {
             Clipboard.SetText("design.patterns20cc");
             FacebookService.s_UseForamttedToStrings = true;

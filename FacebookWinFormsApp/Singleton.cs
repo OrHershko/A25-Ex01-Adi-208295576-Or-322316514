@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Reflection;
 
-
 namespace BasicFacebookFeatures
 {
     public static class Singleton<T>
@@ -11,8 +10,7 @@ namespace BasicFacebookFeatures
         private static object s_LockObj = new object();
 
         static Singleton()
-        {
-        }
+        {}
 
         public static T Instance
         {

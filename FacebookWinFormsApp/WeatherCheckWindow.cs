@@ -16,7 +16,7 @@ namespace BasicFacebookFeatures
         {
             FacebookObjectCollection<Event> facebookEvents = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.Events;
 
-            if (facebookEvents == null)
+            if (facebookEvents != null)
             {
                 foreach (Event facebookEvent in facebookEvents)
                 {
@@ -43,7 +43,6 @@ namespace BasicFacebookFeatures
                 MessageBox.Show($"Failed to fetch weather report: {ex.Message}");
             }
         }
-
 
         private void listBoxEvents_SelectedIndexChanged(object sender, EventArgs e)
         {

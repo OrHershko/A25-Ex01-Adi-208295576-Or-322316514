@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 
-
 namespace BasicFacebookFeatures
 {
     public partial class FormMain : Form
@@ -64,7 +63,7 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                //m_LoginResult = FacebookService.Login(
+                //LoggedInUserSingleton.Instance.LoginResult = FacebookService.Login(
                 //    "913632580724598",
                 //    "email",
                 //    "public_profile",
@@ -73,9 +72,8 @@ namespace BasicFacebookFeatures
                 //    "user_posts",
                 //    "user_photos"
                 //);
-                
-                LoggedInUserSingleton.Instance.LoginResult = FacebookService.Connect(
-                    "EAAMZB8alt53YBOZCIXWJoZBDPAZCK89PrZB9vIyVtz2GW4ccnhaJnsRPXmL7SGXjv91csAoMsHtvQijUdJNpSxURPCOE9pf0Saw3N5ztySJwnniFCeptTRO6fdZAfCPHIvxtCU7j6k9D1xSs8Rvs1ZCBhxo15Wrx2bRderAD340Ou1y5Lz3TSN6K6sIlYm4QCnIvHcy3D4wy2yHZCDB7fHWfCCVUNQJXdkwbzhEfcAZDZD");
+
+                LoggedInUserSingleton.Instance.LoginResult = FacebookService.Connect("");
 
                 if (string.IsNullOrEmpty(LoggedInUserSingleton.Instance.LoginResult.ErrorMessage))
                 {
@@ -109,7 +107,6 @@ namespace BasicFacebookFeatures
             listBoxLikedPages.DrawItem += ListBox_DrawItem;
             showComponents();
         }
-
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
@@ -212,7 +209,7 @@ namespace BasicFacebookFeatures
                 Width = 40,
                 Height = 40,
                 Location = new Point(e.Bounds.X, e.Bounds.Y), 
-                ImageLocation = listBoxItem.PictureURL 
+                ImageLocation = listBoxItem.PictureUrl 
             };
 
             ((Control)sender).Controls.Add(pictureBox);

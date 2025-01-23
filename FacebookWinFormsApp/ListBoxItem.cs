@@ -1,14 +1,15 @@
-﻿namespace BasicFacebookFeatures
+﻿
+namespace BasicFacebookFeatures
 {
     public class ListBoxItem
     {
         public string Name { get; set; }
-        public string PictureURL { get; set; }
+        public string PictureUrl { get; set; }
 
-        public ListBoxItem(string name, string pictureURL)
+        public ListBoxItem(string i_Name, string i_PictureUrl)
         {
-            Name = name;
-            PictureURL = pictureURL;
+            Name = i_Name;
+            PictureUrl = i_PictureUrl;
         }
 
         public override string ToString()

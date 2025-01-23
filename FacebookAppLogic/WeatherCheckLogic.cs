@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using System.Text.Json;
-using System.Linq;
-
 
 namespace FacebookAppLogic
 {
@@ -18,11 +14,10 @@ namespace FacebookAppLogic
             HttpRequestMessage request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri =
-                                                     new Uri(
-                                                         $"https://api.tomorrow.io/v4/weather/forecast?location={city}&timesteps=1d&apikey={apiKey}"),
+                RequestUri =new Uri($"https://api.tomorrow.io/v4/weather/forecast?location={city}&timesteps=1d&apikey={apiKey}"),
                 Headers = { { "accept", "application/json" } }
             };
+
             using (HttpResponseMessage response = await client.SendAsync(request))
             {
                 response.EnsureSuccessStatusCode();
@@ -30,6 +25,5 @@ namespace FacebookAppLogic
                 return body;
             }
         }
-
     }
 }

@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using FacebookWrapper;
 using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
@@ -22,13 +16,12 @@ namespace BasicFacebookFeatures
             listBoxSortedPages.DrawItem += FormMain.ListBox_DrawItem;
         }
 
-
         public void InitSortedPagesWindow()
         {
             m_SortedPages = LoggedInUserSingleton.Instance.LoginResult.LoggedInUser.LikedPages.OrderBy(page => page.LikesCount).ToList();
             listBoxSortedPages.Items.Clear();
 
-            foreach (var page in m_SortedPages)
+            foreach (Page page in m_SortedPages)
             {
                 listBoxSortedPages.Items.Add(new ListBoxItem(page.Name, page.PictureSmallURL));
             }
@@ -75,8 +68,8 @@ namespace BasicFacebookFeatures
             }
 
             FormGuessGame gameForm = new FormGuessGame(m_SortedPages);
+
             gameForm.ShowDialog();
         }
-
     }
 }

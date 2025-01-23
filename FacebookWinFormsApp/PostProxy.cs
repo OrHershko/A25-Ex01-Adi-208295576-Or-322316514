@@ -5,13 +5,14 @@ namespace BasicFacebookFeatures
 {
     public class PostProxy : INotifyPropertyChanged
     {
-        private readonly Post r_Post;
+        public Post Post { get; }
         private string m_Description;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public PostProxy(Post i_Post)
         {
-            r_Post = i_Post;
-            m_Description = r_Post.Description;
+            Post = i_Post;
+            m_Description = Post.Description;
         }
 
         public string Description
@@ -27,14 +28,9 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public Post WrappedPost => r_Post;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged(string i_PropertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(i_PropertyName));
         }
     }
-
 }

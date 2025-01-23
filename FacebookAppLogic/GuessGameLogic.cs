@@ -33,25 +33,23 @@ namespace FacebookAppLogic
 
         {
             long actualLikes = r_Pages[m_CurrentIndex].LikesCount ?? 0;
-
             int difference = Math.Abs(i_UserGuess - (int)actualLikes);
-
             eAnswerStatus answerStatus;
 
             if (difference == 0)
             {
                 Score += 10;
-                answerStatus = eAnswerStatus.CORRECT;
+                answerStatus = eAnswerStatus.Correct;
             }
             else if(difference <= 100)
             {
                 Score += 5;
-                answerStatus = eAnswerStatus.ALMOST;
+                answerStatus = eAnswerStatus.Almost;
             }
             else
             {
                 Score -= 1;
-                answerStatus = eAnswerStatus.WRONG;
+                answerStatus = eAnswerStatus.Wrong;
             }
 
             m_CurrentIndex++;
@@ -60,9 +58,7 @@ namespace FacebookAppLogic
 
         public enum eAnswerStatus
         {
-            CORRECT,ALMOST,WRONG
+            Correct,Almost,Wrong
         }
-
     }
 }
-
